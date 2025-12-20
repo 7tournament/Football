@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Participation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('https://i.postimg.cc/5x4gnBz0/IMG-1061.png') center/cover no-repeat fixed; /* parallax effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Title animation */
+        .content h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            opacity: 0;
+            animation: fadeSlideIn 1.5s forwards;
+        }
+
+        /* Button animation */
+        .participate-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #25D366;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            backdrop-filter: blur(1px);
+            opacity: 0;
+            animation: fadeSlideIn 1.5s 0.8s forwards, pulse 2s 2.3s infinite; /* delay for cinematic effect */
+        }
+
+        .participate-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 2em;
+            }
+            .participate-btn {
+                font-size: 1.2em;
+                padding: 12px 25px;
+            }
+        }
+
+        /* Optional extra sections for scroll demonstration */
+        .section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            background-color: #eee;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Join Our Tournament!</h1>
+            <a 
+               class="participate-btn" 
+               href="https://wa.me/923159180748?text=I%20want%20to%20participate%20in%20tournament" 
+               target="_blank">
+                Participate
+            </a>
+        </div>
+    </div>
+
+    <!-- Optional extra section to see parallax in action -->
+    <div class="section">Scroll Down</div>
+    <div class="section">More Content</div>
+
+</body>
+</html>
