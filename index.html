@@ -1,133 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament Participation</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            scroll-behavior: smooth;
-        }
-
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: url('https://i.postimg.cc/5x4gnBz0/IMG-1061.png') center/cover no-repeat fixed; /* parallax effect */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(2px);
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Title animation */
-        .content h1 {
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            opacity: 0;
-            animation: fadeSlideIn 1.5s forwards;
-        }
-
-        /* Button animation */
-        .participate-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            font-size: 1.5em;
-            color: white;
-            background-color: #25D366;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            backdrop-filter: blur(1px);
-            opacity: 0;
-            animation: fadeSlideIn 1.5s 0.8s forwards, pulse 2s 2.3s infinite; /* delay for cinematic effect */
-        }
-
-        .participate-btn:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .content h1 {
-                font-size: 2em;
-            }
-            .participate-btn {
-                font-size: 1.2em;
-                padding: 12px 25px;
-            }
-        }
-
-        /* Optional extra sections for scroll demonstration */
-        .section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            background-color: #eee;
-            color: #333;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>DeDyn Social Boost</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* --- CSS START --- */
+* { box-sizing: border-box; }
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#4b3cff,#b14cff);color:white;overflow-x:hidden;}
+.menu-btn{position:fixed;top:20px;left:20px;width:30px;height:22px;cursor:pointer;z-index:1001;}
+.menu-btn div{height:4px;background:white;margin:4px 0;border-radius:2px;transition:0.3s;}
+.dashboard{
+  position: fixed;
+  top: 0;
+  left: -300px;       /* hidden initially */
+  width: 300px;       /* fixed width to fit content */
+  max-width: 80vw;    /* responsive for small screens */
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;   /* scroll if content too tall */
+}
+.dashboard.show{left:0;}
+.dashboard h2{margin-top:0;margin-bottom:20px;font-size:24px;border-bottom:1px solid #555;padding-bottom:8px;}
+.dashboard button{width:100%;padding:12px;margin-bottom:10px;background:linear-gradient(135deg,#FE2C55,#25F4EE);border:none;color:white;font-size:16px;border-radius:12px;cursor:pointer;}
+.content-section{display:none;margin-top:15px;}
+.content-section.active{display:block;}
+.faq-item{margin-bottom:12px;}
+.faq-item p.question{font-weight:bold;margin:0;}
+.faq-item p.answer{margin:4px 0 0 0;}
+.chat-box{width:100%;height:200px;background:rgba(255,255,255,0.1);border-radius:12px;padding:10px;overflow-y:auto;margin-bottom:10px;}
+.chat-input{display:flex;gap:10px;}
+.chat-input input{flex:1;padding:10px;border-radius:12px;border:none;font-size:14px;}
+.chat-input button{padding:10px 12px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(135deg,#FE2C55,#25F4EE);color:white;}
+.contact-link{color:#25F4EE;text-decoration:none;}
+.contact-link:hover{text-decoration:underline;}
+.about p{margin-bottom:12px;}
+.container{width:100%;max-width:440px;background:rgba(255,255,255,0.12);border-radius:24px;padding:30px 30px 20px;box-shadow:0 25px 50px rgba(0,0,0,.35);text-align:center;margin:60px auto;position:relative;z-index:1;}
+.logo-container{width:90px;height:90px;margin:0 auto 15px;position:relative;}
+.tiktok-logo,.instagram-logo{width:100%;height:100%;border-radius:18px;display:flex;align-items:center;justify-content:center;animation:float 3s ease-in-out infinite;box-shadow:0 0 20px #25F4EE,0 0 30px #FE2C55;}
+.instagram-logo{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);box-shadow:0 0 20px #fdf497,0 0 30px #d6249f;}
+.tiktok-logo svg,.instagram-logo svg{width:45px;height:45px;}
+@keyframes float{50%{transform:translateY(-8px);}}
+h1{font-size:32px;margin-bottom:5px;}
+h1 span{font-size:20px;font-weight:300;display:block;}
+.custom-select{position:relative;width:100%;margin-top:5px;cursor:pointer;user-select:none;}
+.custom-select .selected{padding:12px;border-radius:12px;background:rgba(255,255,255,0.2);font-size:16px;}
+.custom-select .options{position:absolute;top:100%;left:0;right:0;background:rgba(0,0,0,0.3);border-radius:12px;display:none;flex-direction:column;max-height:200px;overflow-y:auto;z-index:10;}
+.custom-select .options div{padding:10px 12px;display:flex;align-items:center;gap:8px;}
+.custom-select .options div:hover{background:rgba(255,255,255,0.1);}
+.icon{display:inline-block;width:20px;height:20px;}
+.icon.tiktok{background:linear-gradient(45deg,#25F4EE,#FE2C55);mask:url('data:image/svg+xml;utf8,<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M19 6v23.5a4.5 4.5 0 1 1-4-4.47V19a10 10 0 1 0 10 10V16.2a14 14 0 0 0 8 2.5v-6a8 8 0 0 1-8-6.7z"/></svg>') no-repeat center / contain;}
+.icon.instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);mask:url('data:image/svg+xml;utf8,<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M34 6H14a8 8 0 0 0-8 8v20a8 8 0 0 0 8 8h20a8 8 0 0 0 8-8V14a8 8 0 0 0-8-8zm-10 26a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm12-18a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>') no-repeat center / contain;}
+.quantity-box{display:flex;gap:10px;margin-top:10px;}
+.quantity-box button{width:45px;font-size:22px;border-radius:12px;border:none;cursor:pointer;}
+.quantity-box input{flex:1;padding:12px;border-radius:12px;border:none;font-size:16px;}
+.price-box{margin-top:18px;font-size:20px;font-weight:bold;}
+.price-text.instagram{background:linear-gradient(45deg,#fdf497,#fd5949,#d6249f,#285AEB);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold;}
+.order-btn{margin-top:20px;width:100%;padding:15px;border-radius:30px;font-size:18px;font-weight:bold;border:none;cursor:pointer;background:linear-gradient(135deg,#FE2C55,#25F4EE);color:white;}
+.payments{margin-top:25px;}
+.payments h3{font-size:16px;margin-bottom:10px;opacity:0.9;}
+.payment-logos{display:flex;justify-content:center;gap:10px;}
+.pay-box{padding:8px 12px;border-radius:12px;font-weight:bold;font-size:14px;background:rgba(0,0,0,0.4);}
+.jazzcash{color:#f44336;}
+.easypaisa{color:#4caf50;}
+.binance{color:#f3ba2f;}
+.help{margin-top:18px;font-size:14px;}
+.help a{color:#25F4EE;text-decoration:none;font-weight:bold;}
+.help a:hover{text-decoration:underline;}
+footer{margin-top:18px;font-size:12px;opacity:0.7;}
+/* --- CSS END --- */
+</style>
 </head>
 <body>
 
-    <div class="banner">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Join Our Tournament!</h1>
-            <a 
-               class="participate-btn" 
-               href="https://wa.me/923159180748?text=I%20want%20to%20participate%20in%20tournament" 
-               target="_blank">
-                Participate
-            </a>
-        </div>
-    </div>
+<!-- Hamburger -->
+<div class="menu-btn" onclick="toggleDashboard()"><div></div><div></div><div></div></div>
 
-    <!-- Optional extra section to see parallax in action -->
-    <div class="section">Scroll Down</div>
-    <div class="section">More Content</div>
+<!-- Dashboard -->
+<div class="dashboard" id="dashboard">
+<h2>Menu</h2>
+<button onclick="showSection('faq')">FAQ</button>
+<button onclick="showSection('contact')">Contact Me</button>
+<button onclick="showSection('chat')">Assistant AI Chat</button>
+<button onclick="showSection('about')">About Us</button>
+
+<div id="faq" class="content-section">
+<div class="faq-item"><p class="question">Are we trustworthy?</p><p class="answer">Yes! Thousands of happy clients.</p></div>
+<div class="faq-item"><p class="question">Are services cheap?</p><p class="answer">Absolutely! Affordable social boosts.</p></div>
+<div class="faq-item"><p class="question">Do orders deliver fast?</p><p class="answer">Yes! Quick and reliable delivery.</p></div>
+</div>
+
+<div id="contact" class="content-section">
+<p>Contact via WhatsApp:</p>
+<a class="contact-link" href="https://wa.me/923159180748" target="_blank">+92 315 9180748</a>
+</div>
+
+<div id="chat" class="content-section">
+<div class="chat-box" id="chatBox"></div>
+<div class="chat-input">
+<input type="text" id="chatInput" placeholder="Type your message...">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
+
+<div id="about" class="content-section about">
+<p>Welcome to <strong>DeDyn Social Boost</strong>! We provide cheap and reliable social media boosts for TikTok & Instagram.</p>
+<p>Our services include followers, likes, views, comments at affordable prices. Fast delivery & high trust.</p>
+</div>
+</div>
+
+<!-- Main container -->
+<div class="container">
+<div class="logo-container">
+<div class="tiktok-logo">
+<svg viewBox="0 0 48 48"><path fill="#25F4EE" d="M19 6v23.5a4.5 4.5 0 1 1-4-4.47V19a10 10 0 1 0 10 10V16.2a14 14 0 0 0 8 2.5v-6a8 8 0 0 1-8-6.7z"/><path fill="#FE2C55" d="M21 6v22.5a4.5 4.5 0 1 1-4-4.47V18a10 10 0 1 0 10 10V15a14 14 0 0 0 8 2.5v-4a8 8 0 0 1-8-7z"/><path fill="#fff" d="M20 6v22.5a4.5 4.5 0 1 1-4-4.47V18a10 10 0 1 0 10 10V15a14 14 0 0 0 8 2.5v-3a8 8 0 0 1-8-7z"/></svg>
+</div>
+<div class="instagram-logo" style="display:none;">
+<svg viewBox="0 0 48 48"><path fill="white" d="M34 6H14a8 8 0 0 0-8 8v20a8 8 0 0 0 8 8h20a8 8 0 0 0 8-8V14a8 8 0 0 0-8-8zm-10 26a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm12-18a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><circle cx="24" cy="24" r="6" fill="white"/></svg>
+</div>
+</div>
+
+<h1>DeDyn <span>social boost</span></h1>
+
+<label>Choose Service</label>
+<div class="custom-select">
+<div class="selected">TikTok followers</div>
+<div class="options">
+<div data-value="TikTok followers"><span class="icon tiktok"></span> TikTok followers</div>
+<div data-value="TikTok likes"><span class="icon tiktok"></span> TikTok likes</div>
+<div data-value="TikTok views"><span class="icon tiktok"></span> TikTok views</div>
+<div data-value="TikTok comments"><span class="icon tiktok"></span> TikTok comments</div>
+<div data-value="Instagram followers"><span class="icon instagram"></span> Instagram followers</div>
+<div data-value="Instagram likes"><span class="icon instagram"></span> Instagram likes</div>
+<div data-value="Instagram views"><span class="icon instagram"></span> Instagram views</div>
+<div data-value="Instagram comments"><span class="icon instagram"></span> Instagram comments</div>
+</div>
+</div>
+
+<label>Quantity</label>
+<div class="quantity-box">
+<button onclick="changeQty(-100)">-</button>
+<input type="number" id="quantity" value="1000">
+<button onclick="changeQty(100)">+</button>
+</div>
+
+<div class="price-box">
+Total Price: <span id="price" class="price-text">₨ 850</span>
+</div>
+
+<button class="order-btn" onclick="makeOrder()">Make Order</button>
+
+<div class="payments">
+<h3>Payment Methods</h3>
+<div class="payment-logos">
+<div class="pay-box jazzcash">JazzCash</div>
+<div class="pay-box easypaisa">EasyPaisa</div>
+<div class="pay-box binance">Binance</div>
+</div>
+</div>
+
+<div class="help">
+Need help? <a href="https://wa.me/923159180748?text=Hello%2C%20I%20need%20help%20regarding%20DeDyn%20Social%20Boost." target="_blank">Contact me.</a>
+</div>
+
+<footer>©️ 2025 DeDyn Social Boost. All rights reserved.</footer>
+
+<script>
+/* --- JS START --- */
+function toggleDashboard(){document.getElementById('dashboard').classList.toggle('show');}
+function showSection(id){document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function sendMessage(){const input=document.getElementById('chatInput');const chatBox=document.getElementById('chatBox');if(!input.value.trim())return;const userMsg=document.createElement('p');userMsg.textContent='You: '+input.value;chatBox.appendChild(userMsg);const botMsg=document.createElement('p');botMsg.textContent='Assistant: Thank you! We will respond shortly.';chatBox.appendChild(botMsg);chatBox.scrollTop=chatBox.scrollHeight;input.value='';}
+const prices={"TikTok followers":850,"TikTok likes":600,"TikTok views":300,"TikTok comments":1200,"Instagram followers":300,"Instagram likes":150,"Instagram views":150,"Instagram comments":100};
+const customSelect=document.querySelector(".custom-select");
+const selectedDiv=customSelect.querySelector(".selected");
+const optionsDiv=customSelect.querySelector(".options");
+const quantityInput=document.getElementById("quantity");
+const priceText=document.getElementById("price");
+selectedDiv.addEventListener("click",()=>{optionsDiv.style.display=optionsDiv.style.display==="flex"?"none":"flex";});
+optionsDiv.querySelectorAll("div").forEach(option=>{option.addEventListener("click",()=>{selectedDiv.textContent=option.dataset.value;optionsDiv.style.display="none";updateLogoAndPrice();});});
+function changeQty(val){quantityInput.value=Math.max(1,(+quantityInput.value||0)+val);updateLogoAndPrice();}
+function updateLogoAndPrice(){
+    const service=selectedDiv.textContent;
+    const quantity=+quantityInput.value||0;
+    const total=(quantity/1000)*prices[service];
+    priceText.innerText=`₨ ${total.toFixed(0)}`;
+    if(service.startsWith("Instagram")){priceText.classList.add("instagram");document.querySelector(".instagram-logo").style.display="flex";document.querySelector(".tiktok-logo").style.display="none";}
+    else{priceText.classList.remove("instagram");document.querySelector(".instagram-logo").style.display="none";document.querySelector(".tiktok-logo").style.display="flex";}
+}
+function makeOrder(){
+    const service=selectedDiv.textContent;
+    const quantity=quantityInput.value;
+    const total=(quantity/1000)*prices[service];
+    const msg=`Order: ${service}\nQuantity: ${quantity}\nTotal Price: ₨ ${total.toFixed(0)}`;
+    window.location.href=`https://wa.me/923159180748?text=${encodeURIComponent(msg)}`;
+}
+updateLogoAndPrice();
+/* --- JS END --- */
+</script>
 
 </body>
 </html>
