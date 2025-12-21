@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DeDyn Social Boost VR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hamburger -->
+<div class="menu-btn" onclick="toggleDashboard()"><div></div><div></div><div></div></div>
+
+<!-- Dashboard -->
+<div class="dashboard" id="dashboard">
+  <h2>Menu</h2>
+  <button onclick="showSection('faq')">FAQ</button>
+  <button onclick="showSection('contact')">Contact Me</button>
+  <button onclick="showSection('chat')">Assistant AI Chat</button>
+  <button onclick="showSection('about')">About Us</button>
+
+  <div id="faq" class="content-section">
+    <div class="faq-item"><p class="question">Are we trustworthy?</p><p class="answer">Yes! Thousands of happy clients.</p></div>
+    <div class="faq-item"><p class="question">Are services cheap?</p><p class="answer">Absolutely! Affordable social boosts.</p></div>
+    <div class="faq-item"><p class="question">Do orders deliver fast?</p><p class="answer">Yes! Quick and reliable delivery.</p></div>
+  </div>
+
+  <div id="contact" class="content-section">
+    <p>Contact via WhatsApp:</p>
+    <a class="contact-link" href="https://wa.me/923159180748" target="_blank">+92 315 9180748</a>
+  </div>
+
+  <div id="chat" class="content-section">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div id="about" class="content-section about">
+    <p>Welcome to <strong>DeDyn Social Boost</strong>! We provide cheap and reliable social media boosts for TikTok & Instagram.</p>
+    <p>Our services include followers, likes, views, comments at affordable prices. Fast delivery & high trust.</p>
+  </div>
+</div>
+
+<!-- Main container -->
+<div class="container">
+  <div class="logo-container">
+    <div class="tiktok-logo">
+      <svg viewBox="0 0 48 48"><path fill="#25F4EE" d="M19 6v23.5a4.5 4.5 0 1 1-4-4.47V19a10 10 0 1 0 10 10V16.2a14 14 0 0 0 8 2.5v-6a8 8 0 0 1-8-6.7z"/></svg>
+    </div>
+    <div class="instagram-logo" style="display:none;">
+      <svg viewBox="0 0 48 48"><path fill="white" d="M34 6H14a8 8 0 0 0-8 8v20a8 8 0 0 0 8 8h20a8 8 0 0 0 8-8V14a8 8 0 0 0-8-8zm-10 26a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm12-18a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><circle cx="24" cy="24" r="6" fill="white"/></svg>
+    </div>
+  </div>
+
+  <h1>DeDyn <span>social boost</span></h1>
+
+  <label>Choose Service</label>
+  <div class="custom-select">
+    <div class="selected">TikTok followers</div>
+    <div class="options">
+      <div data-value="TikTok followers"><span class="icon tiktok"></span> TikTok followers</div>
+      <div data-value="TikTok likes"><span class="icon tiktok"></span> TikTok likes</div>
+      <div data-value="TikTok views"><span class="icon tiktok"></span> TikTok views</div>
+      <div data-value="TikTok comments"><span class="icon tiktok"></span> TikTok comments</div>
+      <div data-value="Instagram followers"><span class="icon instagram"></span> Instagram followers</div>
+      <div data-value="Instagram likes"><span class="icon instagram"></span> Instagram likes</div>
+      <div data-value="Instagram views"><span class="icon instagram"></span> Instagram views</div>
+      <div data-value="Instagram comments"><span class="icon instagram"></span> Instagram comments</div>
+    </div>
+  </div>
+
+  <label>Quantity</label>
+  <div class="quantity-box">
+    <button onclick="changeQty(-100)">-</button>
+    <input type="number" id="quantity" value="1000">
+    <button onclick="changeQty(100)">+</button>
+  </div>
+
+  <div class="price-box">
+    Total Price: <span id="price" class="price-text">₨ 850</span>
+  </div>
+
+  <button class="order-btn" onclick="makeOrder()">Make Order</button>
+
+  <div class="payments">
+    <h3>Payment Methods</h3>
+    <div class="payment-logos">
+      <div class="pay-box jazzcash">JazzCash</div>
+      <div class="pay-box easypaisa">EasyPaisa</div>
+      <div class="pay-box binance">Binance</div>
+    </div>
+  </div>
+
+  <div class="help">
+    Need help? <a href="https://wa.me/923159180748?text=Hello%2C%20I%20need%20help%20regarding%20DeDyn%20Social%20Boost." target="_blank">Contact me.</a>
+  </div>
+
+  <footer>©️ 2025 DeDyn Social Boost. All rights reserved.</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

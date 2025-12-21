@@ -1,0 +1,344 @@
+/* ===== RESET & BODY ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  color: white;
+  overflow-y: auto;       /* allow vertical scrolling */
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding-bottom: 60px;   /* space for footer */
+}
+
+/* ===== DASHBOARD MENU ===== */
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.menu-btn div {
+  height: 4px;
+  background: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.dashboard {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  max-width: 80vw;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,255,255,0.12), rgba(0,100,255,0.05));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 18px;
+  border: 1px solid rgba(0,255,255,0.3);
+  box-shadow:
+    0 0 40px rgba(0,255,255,0.35),
+    inset 0 0 20px rgba(0,255,255,0.15);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+.dashboard.show { left: 0; }
+.dashboard h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 1px solid rgba(0,255,255,0.3);
+  padding-bottom: 8px;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+.dashboard button {
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(135deg, #00ffff, #0066ff);
+  border: none;
+  border-radius: 14px;
+  color: black;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6), inset 0 0 10px rgba(0,255,255,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 10px;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.dashboard button:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 10px rgba(0,255,255,0.4), inset 0 0 5px rgba(0,255,255,0.2);
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-section { display: none; margin-top: 15px; }
+.content-section.active { display: block; }
+
+/* ===== CHAT ===== */
+.chat-box {
+  width: 100%;
+  height: 200px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+  font-weight: 600;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  background: rgba(0,0,0,0.2);
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff;
+}
+.chat-input button {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00ffff, #0066ff);
+  color: black;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(0,255,255,0.6);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.chat-input button:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 8px rgba(0,255,255,0.4);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(135deg, rgba(0,255,255,0.12), rgba(0,100,255,0.05));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 24px;
+  border: 1px solid rgba(0,255,255,0.3);
+  box-shadow: 0 0 40px rgba(0,255,255,0.35), inset 0 0 20px rgba(0,255,255,0.15);
+  padding: 30px 30px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 60px auto;
+  position: relative;
+  z-index: 10;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+
+/* ===== LOGOS ===== */
+.logo-container {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  position: relative;
+}
+.tiktok-logo, .instagram-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 0 20px #25F4EE, 0 0 30px #FE2C55;
+}
+.instagram-logo {
+  background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0 0 20px #fdf497, 0 0 30px #d6249f;
+}
+.tiktok-logo svg, .instagram-logo svg { width: 45px; height: 45px; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+
+/* ===== HEADINGS ===== */
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #00ffff, #0066ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #0066ff;
+}
+h1 span {
+  font-size: 22px;
+  font-weight: 300;
+  display: block;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+
+/* ===== CUSTOM SELECT ===== */
+.custom-select {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.custom-select .selected {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  font-size: 16px;
+  font-weight: 600;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+.custom-select .options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.custom-select .options div {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+.custom-select .options div:hover { background: rgba(255,255,255,0.05); }
+
+/* ===== ICONS ===== */
+.icon { display: inline-block; width: 20px; height: 20px; }
+.icon.tiktok {
+  background: linear-gradient(45deg,#25F4EE,#FE2C55);
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M19 6v23.5a4.5 4.5 0 1 1-4-4.47V19a10 10 0 1 0 10 10V16.2a14 14 0 0 0 8 2.5v-6a8 8 0 0 1-8-6.7z"/></svg>') no-repeat center / contain;
+}
+.icon.instagram {
+  background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M34 6H14a8 8 0 0 0-8 8v20a8 8 0 0 0 8 8h20a8 8 0 0 0 8-8V14a8 8 0 0 0-8-8zm-10 26a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm12-18a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>') no-repeat center / contain;
+}
+
+/* ===== QUANTITY & PRICE ===== */
+.quantity-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.quantity-box button {
+  width: 45px;
+  font-size: 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg,#00ffff,#0066ff);
+  box-shadow: 0 0 15px rgba(0,255,255,0.6);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.quantity-box button:active { transform: scale(0.96); box-shadow: 0 0 8px rgba(0,255,255,0.4); }
+.quantity-box input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  background: rgba(0,0,0,0.2);
+  color: #00ffff;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.price-box {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+.price-text.instagram {
+  background: linear-gradient(45deg,#fdf497,#fd5949,#d6249f,#285AEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px #fd5949;
+}
+
+/* ===== ORDER BUTTON ===== */
+.order-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00ffff, #0066ff);
+  color: black;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6), inset 0 0 10px rgba(0,255,255,0.3);
+  backdrop-filter: blur(12px);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.order-btn:active { transform: scale(0.96); box-shadow: 0 0 10px rgba(0,255,255,0.4), inset 0 0 5px rgba(0,255,255,0.2); }
+
+/* ===== PAYMENTS & HELP ===== */
+.payments {
+  margin-top: 25px;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+.payments h3 { font-size: 16px; margin-bottom: 10px; opacity: 0.9; }
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.pay-box {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+}
+.jazzcash { color: #f44336; text-shadow: 0 0 5px #f44336, 0 0 10px #FE2C55; }
+.easypaisa { color: #4caf50; text-shadow: 0 0 5px #4caf50, 0 0 10px #25F4EE; }
+.binance { color: #f3ba2f; text-shadow: 0 0 5px #f3ba2f, 0 0 10px #fff; }
+
+.help { margin-top: 18px; font-size: 14px; text-shadow: 0 0 5px #00ffff; }
+.help a { color: #25F4EE; text-decoration: none; font-weight: bold; }
+.help a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  font-size: 12px;
+  opacity: 0.8;
+  text-align: center;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0066ff;
+  font-weight: bold;
+}
+
+/* ===== CANVAS ===== */
+canvas { display: block; position: fixed; top: 0; left: 0; z-index: 0; }
