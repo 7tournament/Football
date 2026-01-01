@@ -215,10 +215,10 @@ footer a{color:var(--accent);text-decoration:none}
 <!-- Sidebar -->
 <div id="sidebar">
   <ul>
-    <li class="active" onclick="location.href='index'">📦 Order Page</li>
-    <li onclick="location.href='faq'">❓ FAQ</li>
-    <li onclick="location.href='ai'">🤖 AI Chatbot</li>
-    <li onclick="location.href='about'">ℹ️ About Us</li>
+    <li class="active" onclick="location.href='/'">📦 Order Page</li>
+    <li onclick="location.href='/faq/'">❓ FAQ</li>
+    <li onclick="location.href='/ai/'">🤖 AI Chatbot</li>
+    <li onclick="location.href='/about/'">ℹ️ About Us</li>
   </ul>
 </div>
 <div id="hamburger">
@@ -553,9 +553,9 @@ document.querySelectorAll("#sidebar ul li").forEach(li => {
     const section = li.textContent.trim();
     switch(section){
       case "📦 Order Page": window.location.href = "/"; break;
-      case "❓ FAQ": window.location.href = "faq/"; break;
-      case "🤖 AI Chatbot": window.location.href = "ai/"; break;
-      case "ℹ️ About Us": window.location.href = "about/"; break;
+      case "❓ FAQ": window.location.href = "/faq/"; break;
+      case "🤖 AI Chatbot": window.location.href = "/ai/"; break;
+      case "ℹ️ About Us": window.location.href = "/about/"; break;
     }
   });
 });
