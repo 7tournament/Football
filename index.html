@@ -552,10 +552,10 @@ document.querySelectorAll("#sidebar ul li").forEach(li => {
   li.addEventListener("click", () => {
     const section = li.textContent.trim();
     switch(section){
-      case "📦 Order Page": window.location.href = "index"; break;
-      case "❓ FAQ": window.location.href = "faq"; break;
-      case "🤖 AI Chatbot": window.location.href = "ai"; break;
-      case "ℹ️ About Us": window.location.href = "about"; break;
+      case "📦 Order Page": window.location.href = "/"; break;
+      case "❓ FAQ": window.location.href = "faq/"; break;
+      case "🤖 AI Chatbot": window.location.href = "ai/"; break;
+      case "ℹ️ About Us": window.location.href = "about/"; break;
     }
   });
 });
