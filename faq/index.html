@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dedyn Boosts – FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f1a;
+  --accent:#3aa0ff;
+  --card:rgba(15,20,40,0.95);
+  --border:#445;
+  --text:#ffffff;
+  --sidebar-bg: linear-gradient(135deg,#0b0f1a,#1a1f2a);
+  --sidebar-text:#ffffff;
+  --sidebar-hover: var(--accent);
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0;transition:all .3s ease}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:20px;overflow-x:hidden;font-size:16px}
+
+/* Sidebar */
+#sidebar{
+  position:fixed;left:0;top:0;width:250px;height:100%;background: var(--sidebar-bg);
+  border-right:2px solid var(--accent);border-radius:0 20px 20px 0;transform: translateX(-250px);transition: transform 0.5s ease;z-index:1000;
+}
+body.sidebar-open #sidebar{transform: translateX(0);}
+#sidebar ul{list-style:none;padding:60px 20px 0 20px;}
+#sidebar ul li{
+  padding:18px 12px;margin-bottom:15px;font-family:'Orbitron',sans-serif;font-weight:700;
+  color: var(--sidebar-text);border-radius:12px;cursor:pointer;transition:0.3s;
+}
+#sidebar ul li:hover,.active{background:var(--sidebar-hover);color:#ffffff;}
+
+/* Hamburger */
+#hamburger{
+  position:fixed;top:20px;left:20px;width:35px;height:30px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;z-index:1100;
+}
+#hamburger .line{width:100%;height:5px;background:var(--accent);border-radius:3px;}
+
+/* Header */
+.header{text-align:center;margin:30px 0;}
+.title{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,36px);color:var(--accent);text-shadow:0 0 25px var(--accent);}
+.subtitle{color:#cce0ff;margin-top:6px}
+
+/* FAQ */
+.faq-container{max-width:800px;margin:0 auto;padding:20px;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:15px;overflow:hidden;}
+.faq-item h3{cursor:pointer;padding:15px;font-family:'Orbitron',sans-serif;font-size:16px;background:var(--bg);margin:0;transition:0.3s;}
+.faq-item h3:hover{background:var(--accent);}
+.faq-item p{padding:0 15px 15px 15px;display:none;font-family:'Inter',sans-serif;font-size:14px;color:#ccc;line-height:1.5;}
+.faq-item.active p{display:block;}
+
+/* Theme Selector */
+.theme-container{
+  max-width:800px;margin:0 auto 20px auto;text-align:center;
+}
+.theme-container label{font-family:'Orbitron',sans-serif;font-weight:700;margin-right:10px;}
+.theme-container select{padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:#fff;font-family:'Orbitron',sans-serif;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <ul>
+    <li onclick="window.location.href='/'">📦 Order Page</li>
+    <li class="active" onclick="window.location.href='/faq/'">❓ FAQ</li>
+    <li onclick="window.location.href='/ai/'">🤖 AI Chatbot</li>
+    <li onclick="window.location.href='/about/'">ℹ️ About Us</li>
+  </ul>
+</div>
+<div id="hamburger"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+
+<div class="main-content">
+
+<div class="header">
+  <div class="title">❓ Frequently Asked Questions</div>
+  <div class="subtitle">Everything you need to know about our services</div>
+</div>
+
+<!-- Theme Selector -->
+<div class="theme-container">
+  <label for="theme">🎨 Theme:</label>
+  <select id="theme">
+    <option value="space">🌌 Space 3D</option>
+    <option value="cybergreen">💚 Cyber Green</option>
+    <option value="purple">💜 Purple Glow</option>
+    <option value="ocean">🌊 Ocean Blue</option>
+  </select>
+</div>
+
+<div class="faq-container">
+  <div class="faq-item">
+    <h3>💡 What types of services do you offer?</h3>
+    <p>We provide social media growth services including Instagram, TikTok, and YouTube followers, likes, comments, and subscribers.</p>
+  </div>
+  <div class="faq-item">
+    <h3>⏱️ How long will it take to receive my order?</h3>
+    <p>Delivery times vary by service and quality level. Standard services take 1-17 hours, High quality 1-7 hours, and Ultra premium 1-2 hours.</p>
+  </div>
+  <div class="faq-item">
+    <h3>🔄 Do you offer refills if followers/likes drop?</h3>
+    <p>Yes! High quality services include a 7-day refill, and Ultra premium services include lifetime refills.</p>
+  </div>
+  <div class="faq-item">
+    <h3>💳 What payment methods are accepted?</h3>
+    <p>Payments are via WhatsApp order requests, completed using mobile payment apps, bank transfers, or methods provided directly.</p>
+  </div>
+  <div class="faq-item">
+    <h3>⚠️ Is it safe to provide my profile or video links?</h3>
+    <p>Absolutely. We never share your personal data. Links are only used to deliver the requested services to your social media account.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Sidebar toggle
+document.getElementById("hamburger").addEventListener("click",()=>document.body.classList.toggle("sidebar-open"));
+
+// FAQ toggle
+document.querySelectorAll(".faq-item h3").forEach(h=>{
+  h.addEventListener("click", ()=> h.parentElement.classList.toggle("active"));
+});
+
+// Theme system with localStorage
+const themeSelect = document.getElementById("theme");
+const starColorHolder = {color:"#3aa0ff"}; // For future star effect if needed
+
+function applyTheme(theme){
+    switch(theme){
+        case "space":
+            document.documentElement.style.setProperty("--bg","#0b0f1a");
+            document.documentElement.style.setProperty("--accent","#3aa0ff");
+            document.documentElement.style.setProperty("--card","rgba(15,20,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#0b0f1a,#1a1f2a)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#3aa0ff");
+            starColorHolder.color="#3aa0ff";
+            break;
+        case "cybergreen":
+            document.documentElement.style.setProperty("--bg","#001f0f");
+            document.documentElement.style.setProperty("--accent","#00ff99");
+            document.documentElement.style.setProperty("--card","rgba(0,20,10,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f0f,#003320)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ff99");
+            starColorHolder.color="#00ff99";
+            break;
+        case "purple":
+            document.documentElement.style.setProperty("--bg","#1a001f");
+            document.documentElement.style.setProperty("--accent","#bb00ff");
+            document.documentElement.style.setProperty("--card","rgba(20,0,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#1a001f,#400040)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#bb00ff");
+            starColorHolder.color="#bb00ff";
+            break;
+        case "ocean":
+            document.documentElement.style.setProperty("--bg","#001f2f");
+            document.documentElement.style.setProperty("--accent","#00ccff");
+            document.documentElement.style.setProperty("--card","rgba(0,15,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f2f,#003b5f)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ccff");
+            starColorHolder.color="#00ccff";
+            break;
+        case "emerald":
+            document.documentElement.style.setProperty("--bg","#001f1a");
+            document.documentElement.style.setProperty("--accent","#00ff88");
+            document.documentElement.style.setProperty("--card","rgba(0,30,20,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f1a,#003322)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ff88");
+            starColorHolder.color="#00ff88";
+            break;
+    }
+}
+
+// On change
+themeSelect.addEventListener("change",()=>{
+    const theme = themeSelect.value;
+    applyTheme(theme);
+    localStorage.setItem("theme",theme);
+});
+
+// On page load, restore
+if(localStorage.getItem("theme")){
+    const savedTheme = localStorage.getItem("theme");
+    applyTheme(savedTheme);
+    themeSelect.value = savedTheme;
+}
+</script>
+</body>
+</html>
