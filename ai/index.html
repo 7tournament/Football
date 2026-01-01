@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEDYN AI Full Service Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f1a;
+  --accent:#3aa0ff;
+  --card:rgba(15,20,40,0.95);
+  --border:#445;
+  --text:#ffffff;
+  --sidebar-bg: linear-gradient(135deg,#0b0f1a,#1a1f2a);
+  --sidebar-text:#ffffff;
+  --sidebar-hover: var(--accent);
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0;transition:all .3s ease}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:20px;overflow-x:hidden;font-size:16px}
+
+/* Sidebar */
+#sidebar{
+  position:fixed;left:0;top:0;width:250px;height:100%;background: var(--sidebar-bg);
+  border-right:2px solid var(--accent);border-radius:0 20px 20px 0;transform: translateX(-250px);transition: transform 0.5s ease;z-index:1000;
+}
+body.sidebar-open #sidebar{transform: translateX(0);}
+#sidebar ul{list-style:none;padding:60px 20px 0 20px;}
+#sidebar ul li{
+  padding:18px 12px;margin-bottom:15px;font-family:'Orbitron',sans-serif;font-weight:700;
+  color: var(--sidebar-text);border-radius:12px;cursor:pointer;transition:0.3s;
+}
+#sidebar ul li:hover,.active{background:var(--sidebar-hover);color:#ffffff;}
+
+/* Hamburger */
+#hamburger{
+  position:fixed;top:20px;left:20px;width:35px;height:30px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;z-index:1100;
+}
+#hamburger .line{width:100%;height:5px;background:var(--accent);border-radius:3px;}
+
+/* Header */
+.header{text-align:center;margin:30px 0;}
+.title{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,36px);color:var(--accent);text-shadow:0 0 25px var(--accent);}
+.subtitle{color:#cce0ff;margin-top:6px}
+
+/* Theme Selector */
+.theme-container{
+  max-width:800px;margin:0 auto 20px auto;text-align:center;
+}
+.theme-container label{font-family:'Orbitron',sans-serif;font-weight:700;margin-right:10px;}
+.theme-container select{padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:#fff;font-family:'Orbitron',sans-serif;font-weight:700;}
+
+/* Chat Box */
+.chat-box{
+  max-width:800px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:15px;min-height:400px;
+  display:flex;flex-direction:column;gap:10px;overflow-y:auto;
+}
+.message{
+  max-width:75%;padding:10px 15px;border-radius:15px;font-size:14px;word-wrap:break-word;white-space:pre-line;
+}
+.user-msg{background:var(--accent);color:#000;align-self:flex-end;}
+.ai-msg{background:#5555aa;color:#fff;align-self:flex-start;}
+.typing{font-style:italic;opacity:0.7;}
+.input-container{
+  max-width:800px;margin:20px auto;display:flex;gap:10px;
+}
+input[type="text"]{flex:1;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:#fff;}
+button{padding:12px 20px;border:none;border-radius:14px;background:var(--accent);color:#000;font-weight:700;cursor:pointer;font-family:'Orbitron',sans-serif;transition:all 0.2s;}
+button:hover{transform:scale(1.05);}
+.whatsapp-msg{margin-top:5px;font-size:13px;background:#25D366;color:#000;border-radius:10px;padding:8px;text-decoration:none;display:inline-block;cursor:pointer;text-align:center;}
+
+/* Footer */
+footer{margin-top:40px;padding:25px;text-align:center;background:var(--card);border-radius:20px;border:1px solid var(--border);}
+footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <ul>
+    <li onclick="window.location.href='/'">📦 Order Page</li>
+    <li onclick="window.location.href='/faq/'">❓ FAQ</li>
+    <li class="active" onclick="window.location.href='/ai/'">🤖 AI Chatbot</li>
+    <li onclick="window.location.href='/about/'">ℹ️ About Us</li>
+  </ul>
+</div>
+<div id="hamburger"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+
+<div class="main-content">
+  <div class="header">
+    <div class="title">🤖 Griffith AI Full Service Guide</div>
+    <div class="subtitle">Ask me about any platform and I’ll instruct all available services!</div>
+  </div>
+
+  <!-- Theme Selector -->
+  <div class="theme-container">
+    <label for="theme">🎨 Theme:</label>
+    <select id="theme">
+      <option value="space">🌌 Space 3D</option>
+      <option value="cybergreen">💚 Cyber Green</option>
+      <option value="purple">💜 Purple Glow</option>
+      <option value="ocean">🌊 Ocean Blue</option>
+    </select>
+  </div>
+
+  <div class="chat-box" id="chat-box"></div>
+
+  <div class="input-container">
+    <input type="text" id="user-input" placeholder="Type your question...">
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<footer>
+<p>© All Rights Reserved – DEDYN BOOSTS</p>
+</footer>
+
+<script>
+// Sidebar toggle
+document.getElementById("hamburger").addEventListener("click",()=>document.body.classList.toggle("sidebar-open"));
+
+// Theme system with localStorage
+const themeSelect = document.getElementById("theme");
+function applyTheme(theme){
+    switch(theme){
+        case "space":
+            document.documentElement.style.setProperty("--bg","#0b0f1a");
+            document.documentElement.style.setProperty("--accent","#3aa0ff");
+            document.documentElement.style.setProperty("--card","rgba(15,20,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#0b0f1a,#1a1f2a)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#3aa0ff");
+            break;
+        case "cybergreen":
+            document.documentElement.style.setProperty("--bg","#001f0f");
+            document.documentElement.style.setProperty("--accent","#00ff99");
+            document.documentElement.style.setProperty("--card","rgba(0,20,10,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f0f,#003320)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ff99");
+            break;
+        case "purple":
+            document.documentElement.style.setProperty("--bg","#1a001f");
+            document.documentElement.style.setProperty("--accent","#bb00ff");
+            document.documentElement.style.setProperty("--card","rgba(20,0,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#1a001f,#400040)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#bb00ff");
+            break;
+        case "ocean":
+            document.documentElement.style.setProperty("--bg","#001f2f");
+            document.documentElement.style.setProperty("--accent","#00ccff");
+            document.documentElement.style.setProperty("--card","rgba(0,15,40,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f2f,#003b5f)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ccff");
+            break;
+        case "emerald":
+            document.documentElement.style.setProperty("--bg","#001f1a");
+            document.documentElement.style.setProperty("--accent","#00ff88");
+            document.documentElement.style.setProperty("--card","rgba(0,30,20,0.95)");
+            document.documentElement.style.setProperty("--sidebar-bg","linear-gradient(135deg,#001f1a,#003322)");
+            document.documentElement.style.setProperty("--sidebar-text","#ffffff");
+            document.documentElement.style.setProperty("--sidebar-hover","#00ff88");
+            break;
+    }
+}
+themeSelect.addEventListener("change",()=>{
+    const theme = themeSelect.value;
+    applyTheme(theme);
+    localStorage.setItem("theme",theme);
+});
+if(localStorage.getItem("theme")){
+    const savedTheme = localStorage.getItem("theme");
+    applyTheme(savedTheme);
+    themeSelect.value = savedTheme;
+}
+
+// AI Chat
+const services={
+  "tiktok":["Followers","Likes","Views","Comments","Shares"],
+  "instagram":["Followers","Likes","Views","Comments","Story Views","Reels Views"],
+  "youtube":["Subscribers","Likes","Views","Comments","Shares"],
+  "facebook":["Followers","Likes","Comments","Shares","Page Likes","Reactions"],
+  "twitter":["Followers","Likes","Retweets"],
+  "spotify":["Followers"],
+  "telegram":["Members"]
+};
+const chatBox=document.getElementById("chat-box");
+const input=document.getElementById("user-input");
+const sendBtn=document.getElementById("send-btn");
+
+function addMessage(text,sender,typing=false){
+  const msg=document.createElement("div");
+  msg.classList.add("message",sender==="user"?"user-msg":"ai-msg");
+  if(typing) msg.classList.add("typing");
+  msg.innerHTML=text;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop=chatBox.scrollHeight;
+  return msg;
+}
+
+function parseMessage(msg){
+  const lower=msg.toLowerCase();
+  for(const platform in services){
+    if(lower.includes(platform)) return platform;
+  }
+  return null;
+}
+
+function generateWhatsApp(platform,service,qty,link){
+  const orderNum=Math.floor(Math.random()*900+100);
+  const msg=`DEDYN BOOSTS new order:\nOrder #${orderNum}\n\nService: ${service}\nQuantity: ${qty}\nQuality: Standard\nLink: ${link}\nPrice: Calculated on Order Page\n\nPlease wait 1-2 hours to get your order processed\n\nWarning: do not change/edit this message\n\nThanks for ordering! (:`;
+  return `<a href="https://wa.me/923159180748?text=${encodeURIComponent(msg)}" class="whatsapp-msg">💬 Send Order via WhatsApp</a>`;
+}
+
+function getAIResponse(msg){
+  const platform=parseMessage(msg);
+  if(platform){
+    let response=`✅ Instructions for ${platform.charAt(0).toUpperCase()+platform.slice(1)} services:\n\n`;
+    services[platform].forEach(s=>{
+      response+=`🔹 ${s}:\n1️⃣ Go to Order Page.\n2️⃣ Select "${platform.charAt(0).toUpperCase()+platform.slice(1)} Boosts".\n3️⃣ Choose "${s}" service.\n4️⃣ Enter quantity and quality.\n5️⃣ Paste the link.\n6️⃣ Click 'Order via WhatsApp'.\n`;
+      response+=generateWhatsApp(platform,s,"5000","example.com")+"\n\n";
+    });
+    return response;
+  }
+  if(/hi|hello|hey/.test(msg)) return "Hello! 👋 I’m your DEDYN AI assistant. Ask me about any platform!";
+  if(/help|support/.test(msg)) return "Mention the platform you want to boost, and I’ll instruct all services available!";
+  return "I can guide you for TikTok, Instagram, YouTube, Facebook, Twitter, Spotify, or Telegram. Type the platform name to get full instructions.";
+}
+
+function typeAIMessage(msg){
+  const typingMsg=addMessage("Typing...","ai",true);
+  setTimeout(()=>{
+    typingMsg.remove();
+    addMessage(msg,"ai");
+  },500+Math.random()*1000);
+}
+
+function sendMessage(){
+  const msg=input.value.trim();
+  if(!msg) return;
+  addMessage(msg,"user");
+  input.value="";
+  typeAIMessage(getAIResponse(msg));
+}
+
+sendBtn.addEventListener("click",sendMessage);
+input.addEventListener("keypress",e=>{if(e.key==="Enter") sendMessage();});
+</script>
+</body>
+</html>
