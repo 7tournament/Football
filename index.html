@@ -1,564 +1,362 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>dedyn Boosts</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>/envy #opened</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-/* Header container animation */
-.header-flex{
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{
+  font-family:'Nunito',sans-serif;
+  min-height:100%;
+  overflow-x:hidden;
+  overscroll-behavior:none;
+  transition: all 2s ease;
+}
+
+/* ===== BACKGROUND ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  background: linear-gradient(45deg,#12000d,#26001b,#12000d,#2b001f);
+  background-size:400% 400%;
+  animation: meltBG 20s ease infinite;
+  transition: background 2s ease;
+}
+@keyframes meltBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* ===== HEADER ===== */
+.header{
+  margin:24px auto;
+  max-width:420px;
+  padding:28px;
+  border-radius:36px;
+  backdrop-filter: blur(22px);
+  text-align:center;
+  animation: headerGlow 6s ease-in-out infinite alternate;
+  transition: all 2s ease;
+}
+
+body.dark .header{
+  background: rgba(40,0,30,0.65);
+  box-shadow:0 30px 80px rgba(255,120,180,.45);
+  color:#ffb3d9;
+}
+body.bright .header{
+  background: rgba(255,192,220,.65);
+  box-shadow:0 30px 80px rgba(255,150,220,.6);
+  color:#ff4fbf;
+}
+
+@keyframes headerGlow{
+  0%{box-shadow:0 25px 70px rgba(255,140,190,.4);}
+  100%{box-shadow:0 40px 110px rgba(255,140,190,.7);}
+}
+
+.header h1{
+  font-family:'Unbounded',cursive;
+  font-size:1.9rem;
+  letter-spacing:.14em;
+  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  transition: all 2s ease;
+}
+
+/* ===== MAIN ===== */
+.main{
+  padding:80px 28px 220px;
   display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:18px;
-  flex-wrap:wrap;
-  animation: fadeInUp 1.2s ease;
+  gap:40px;
+  text-align:center;
 }
 
-/* Griffith logo */
-.header-logo{
-  width:95px;
-  height:95px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--accent);
-  box-shadow:
-    0 0 20px var(--accent),
-    0 0 40px rgba(58,160,255,.6);
-  animation: glowPulse 3s infinite alternate;
-  transition: transform .4s ease, box-shadow .4s ease;
+/* ===== LOGO CARD ===== */
+.logo-card{
+  width:320px;
+  border-radius:38px;
+  overflow:hidden;
+  position:relative;
+  animation: cardGlow 8s ease-in-out infinite alternate;
+  transition: all 2s ease;
+}
+body.dark .logo-card{
+  background: rgba(30,0,20,.9);
+  box-shadow:0 25px 80px rgba(0,0,0,.7),0 0 50px rgba(255,120,180,.35);
+}
+body.bright .logo-card{
+  background: rgba(255,192,220,.85);
+  box-shadow:0 25px 80px rgba(255,140,200,.45),0 0 50px rgba(255,180,220,.35);
 }
 
-/* Hover 3D tilt effect */
-.header-logo:hover{
-  transform: perspective(600px) rotateY(10deg) rotateX(5deg) scale(1.08);
-  box-shadow:
-    0 0 30px var(--accent),
-    0 0 60px var(--accent);
+.logo-card img{
+  width:100%;
+  display:block;
 }
 
-/* Text */
-.header-text{
-  text-align:left;
+.logo-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to bottom,transparent 50%, rgba(0,0,0,.6));
 }
 
-/* Mobile fix */
-@media (max-width:600px){
-  .header-flex{
-    flex-direction:column;
-  }
-  .header-text{
-    text-align:center;
-  }
+.logo-text{
+  position:absolute;
+  bottom:16px;
+  width:100%;
+  text-align:center;
+  font-family:'Unbounded',cursive;
+  font-size:1.6rem;
+  letter-spacing:.24em;
+  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 25px rgba(255,140,190,.9);
+  z-index:2;
+  animation: textGlow 4s ease-in-out infinite alternate;
 }
 
-/* Animations */
-@keyframes glowPulse{
-  from{
-    box-shadow:
-      0 0 15px var(--accent),
-      0 0 30px rgba(58,160,255,.5);
-  }
-  to{
-    box-shadow:
-      0 0 30px var(--accent),
-      0 0 60px rgba(58,160,255,.9);
-  }
+@keyframes textGlow{
+  0%{text-shadow:0 0 20px rgba(255,120,180,.7);}
+  100%{text-shadow:0 0 35px rgba(255,140,190,.9);}
 }
 
-@keyframes fadeInUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-.header-flex{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  flex-wrap:wrap;
-}
-
-.header-logo{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--accent);
-  box-shadow:0 0 25px var(--accent);
-}
-
-.header-text{
-  text-align:left;
-}
-
-@media (max-width:600px){
-  .header-flex{
-    flex-direction:column;
-  }
-  .header-text{
-    text-align:center;
-  }
-}
-:root{
-  --bg:#0b0f1a;
-  --accent:#3aa0ff;
-  --card:rgba(15,20,40,0.95);
-  --border:#445;
-  --text:#ffffff;
-  --sidebar-bg: linear-gradient(135deg,#0b0f1a,#1a1f2a);
-  --sidebar-text: #ffffff;
-  --sidebar-hover: var(--accent);
-  --wa-bg:#25D366;
-}
-*{box-sizing:border-box;margin:0;padding:0;transition:all .6s ease}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:20px;overflow-x:hidden;font-size:16px;}
-canvas{position:fixed;inset:0;z-index:-1}
-
-/* Sidebar */
-#sidebar{
-  position:fixed;left:0;top:0;width:250px;height:100%;background: var(--sidebar-bg);
-  box-shadow:5px 0 25px rgba(0,0,0,0.8);border-right:2px solid var(--accent);
-  border-radius:0 20px 20px 0;transform: translateX(-250px);transition: transform 0.5s ease;z-index:1000;
-}
-body.sidebar-open #sidebar{transform: translateX(0);}
-#sidebar ul{list-style:none;padding:60px 20px 0 20px;}
-#sidebar ul li{
-  padding:18px 12px;margin-bottom:15px;font-family:'Orbitron',sans-serif;
-  font-weight:700;color: var(--sidebar-text);border-radius:12px;cursor:pointer;transition:0.3s;
-}
-#sidebar ul li:hover,
-#sidebar ul li.active {
-  background: var(--sidebar-hover);
-  color: var(--sidebar-active-text);
-}
-#hamburger{
-  position:fixed;top:20px;left:20px;width:35px;height:30px;display:flex;flex-direction:column;
-  justify-content:space-between;cursor:pointer;z-index:1100;
-}
-#hamburger .line{width:100%;height:5px;background:var(--accent);border-radius:3px;}
-
-/* Support Bar */
-.support-bar{
-  display:block;text-align:center;padding:16px;border-radius:18px;
-  background:linear-gradient(90deg,var(--accent),#09162f);
-  font-family:'Orbitron',sans-serif;color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.6);
-  text-decoration:none;margin-bottom:20px;
-}
-.support-bar:hover{transform:translateY(-2px)}
-
-/* Header */
-.header{text-align:center;margin:30px 0;}
-.title{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,36px);color:var(--accent);text-shadow:0 0 25px var(--accent);}
-.subtitle{color:#cce0ff;margin-top:6px}
-
-/* Controls */
-.controls{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:25px;}
-.controls div{flex:1 1 200px}
-label{font-family:'Orbitron',sans-serif;font-weight:700}
-select,input,textarea{width:100%;margin-top:6px;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:#fff;font-family:'Orbitron',sans-serif;font-size:14px;min-width:200px;}
-textarea{resize:none;min-height:45px}
-.minmax{font-size:12px;color:#aaa;text-align:right;font-family:'Inter',sans-serif;margin-top:3px;}
-.warning{font-size:12px;color:#ff4d4d;text-align:right;font-family:'Inter',sans-serif;}
-
-/* Stats Grid */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-bottom:30px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.6);}
-.card span{font-family:'Orbitron',sans-serif;font-size:clamp(20px,4vw,30px);color:var(--accent);}
-
-/* Order Config */
-.order-config{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:30px;box-shadow:0 10px 25px rgba(0,0,0,.6);margin-bottom:30px;}
-.order-config h3{font-family:'Orbitron',sans-serif;color:var(--accent);margin-bottom:20px;}
-.order-config label{margin-top:18px;display:block}
-.price-box{margin-top:12px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--border);font-family:'Orbitron',sans-serif;color:var(--accent);}
-#whatsappOrder{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  margin-top:24px;
-  padding:15px;
-  border-radius:16px;
-  background: var(--wa-bg);
-  box-shadow: 0 0 20px var(--wa-bg);
+/* ===== MEMBER COUNT ===== */
+.members{
+  padding:14px 28px;
+  border-radius:999px;
+  backdrop-filter: blur(16px);
+  font-family:'Unbounded', cursive;
+  font-size:.85rem;
+  letter-spacing:.12em;
   color:#000;
-  font-family:'Orbitron',sans-serif;
-  font-weight:700;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition: all 2s ease;
+}
+
+body.dark .members{background: rgba(255,255,255,.7);}
+body.bright .members{background: rgba(255,180,220,.7); color:#3a001f;}
+
+/* ===== BUTTON ===== */
+.join{
+  padding:18px 56px;
+  border-radius:999px;
+  font-family:'Unbounded',cursive;
+  letter-spacing:.14em;
+  color:#fff;
   text-decoration:none;
-  transition: all .4s ease;
+  box-shadow:0 0 40px rgba(255,140,190,.9);
+  transition:all 2s ease, transform .25s ease;
+}
+body.dark .join{
+  background: linear-gradient(135deg,#ff8fbf,#c77dff,#ffb3d9);
+}
+body.bright .join{
+  background: linear-gradient(135deg,#ffb3d9,#c77dff,#ff8fbf);
+}
+.join:hover{transform:translateY(-3px) scale(1.05);}
+
+/* ===== SECTIONS ===== */
+.section-title{
+  font-family:'Unbounded', cursive;
+  font-size:1.2rem;
+  letter-spacing:.22em;
+  margin-top:40px;
+  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: titleGlow 6s ease-in-out infinite alternate;
 }
 
-#whatsappOrder:hover{
-  transform: scale(1.05);
-  box-shadow: 0 0 35px var(--wa-bg);
+@keyframes titleGlow{
+  0%{text-shadow:0 0 15px rgba(255,140,190,.5);}
+  100%{text-shadow:0 0 35px rgba(255,180,220,.9);}
 }
-#whatsappOrder img{width:22px}
 
-/* Footer */
-footer{margin-top:40px;padding:25px;text-align:center;background:var(--card);border-radius:20px;border:1px solid var(--border);}
-footer a{color:var(--accent);text-decoration:none}
+.card{
+  max-width:420px;
+  padding:30px;
+  border-radius:32px;
+  backdrop-filter: blur(22px);
+  line-height:1.8;
+  text-align:center;
+  animation: meltCard 12s ease-in-out infinite alternate;
+  font-family:'Nunito', sans-serif;
+  transition: all 2s ease;
+}
 
-/* Main content container */
-.main-content{max-width:1200px;margin:0 auto;padding:0 20px;}
+body.dark .card{
+  background:rgba(40,0,30,.55);
+  color:#ffb3d9;
+  box-shadow:0 22px 60px rgba(0,0,0,.45);
+}
+body.bright .card{
+  background:rgba(255,192,220,.55);
+  color:#3a001f;
+  box-shadow:0 22px 60px rgba(255,140,200,.25);
+}
 
+@keyframes meltCard{
+  0%{opacity:0.95;}
+  50%{opacity:1;}
+  100%{opacity:0.95;}
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px;
+  text-align:center;
+  font-family:'Unbounded',cursive;
+  font-size:.75rem;
+  letter-spacing:.18em;
+  animation: footerGlow 10s ease-in-out infinite alternate;
+  transition: all 2s ease;
+}
+
+body.dark footer{color:rgba(255,255,255,.6);}
+body.bright footer{color:rgba(60,0,40,.7);}
+
+/* ===== EMO TOGGLE BUTTON ===== */
+.toggle-btn{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  padding:14px 20px;
+  border-radius:999px;
+  backdrop-filter: blur(20px);
+  font-family:'Unbounded',cursive;
+  cursor:pointer;
+  border:none;
+  font-size:.9rem;
+  transition: all 2s ease;
+}
+
+body.dark .toggle-btn{background: rgba(40,0,30,.75); color:#fff; box-shadow:0 20px 50px rgba(255,120,180,.45);}
+body.bright .toggle-btn{background: rgba(255,180,220,.75); color:#3a001f; box-shadow:0 20px 50px rgba(255,140,220,.45);}
 </style>
 </head>
-<body>
 
-<!-- Sidebar -->
-<div id="sidebar">
-  <ul>
-    <li class="active" onclick="location.href='/'">📦 Order Page</li>
-    <li onclick="location.href='/faq/'">❓ FAQ</li>
-    <li onclick="location.href='/ai/'">🤖 AI Chatbot</li>
-    <li onclick="location.href='/about/'">ℹ️ About Us</li>
-  </ul>
-</div>
-<div id="hamburger">
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
+<body class="dark">
+<div class="bg"></div>
+
+<div class="header">
+  <h1>/envy #opened</h1>
 </div>
 
-<canvas id="space"></canvas>
-
-<div class="main-content">
-<a class="support-bar" target="_blank" href="https://wa.me/923159180748?text=I%20need%20help%20regarding%20dedyn%20boosts%20assist%20me%20with%20:">
-📞 Need Support? Click Here
-</a>
-
-<div class="header header-flex">
-  <img class="header-logo"
-       src="https://raw.githubusercontent.com/7tournament/Mywebsite/main/griffith.JPEG"
-       alt="Griffith">
-  <div class="header-text">
-    <div class="title">👑 DEDYN BOOSTS</div>
-    <div class="subtitle">Premium Social Media Growth Services</div>
+<div class="main">
+  <div class="logo-card">
+    <img src="https://raw.githubusercontent.com/7tournament/Football/main/IMG_1531.jpeg" alt="envy">
+    <div class="logo-text">/envy</div>
   </div>
-</div>
 
-<div class="controls">
-  <div>
-    <label>💰 Currency</label>
-    <select id="currency">
-      <option value="USD">🇺🇸 USD</option>
-      <option value="PKR">🇵🇰 PKR</option>
-      <option value="EUR">🇪🇺 EUR</option>
-      <option value="IRR">🇮🇷 IRR</option>
-      <option value="AFN">🇦🇫 AFN</option>
-    </select>
+  <div class="members" id="members">loading…</div>
+
+  <a class="join" href="https://discord.gg/mynWqaNUSg" target="_blank">join server</a>
+
+  <div class="section-title">about us</div>
+  <div class="card">
+    We’re a calm, friendly space for hangouts, conversations, and comfort. Emo aesthetic, vaporwave vibes, cozy community.
   </div>
-  <div>
-    <label>🎨 Theme</label>
-    <select id="theme">
-      <option value="space">🌌 Space 3D</option>
-      <option value="cybergreen">💚 Cyber Green</option>
-      <option value="purple">💜 Purple Glow</option>
-      <option value="ocean">🌊 Ocean Blue</option>
-    </select>
+
+  <div class="section-title">rules</div>
+  <div class="card" id="rules-card">
+    1. Be respectful and kind.<br>
+    2. No harassment or hate speech.<br>
+    3. Respect boundaries and personal space.<br>
+    4. No spamming, scams, or advertisements.<br>
+    5. Follow Discord's Terms of Service.<br>
+    6. Keep channels organized.<br>
+    7. Appropriate usernames and avatars.<br>
+    8. No NSFW unless designated.<br>
+    9. Report issues respectfully.<br>
+    10. Protect the chill vibe.<br>
+    11. Participate in hangouts.<br>
+    12. Stay active but don’t pressure others.<br>
+    13. Be inclusive.<br>
+    14. No drama or personal attacks.<br>
+    15. Keep memes tasteful.<br>
+    16. Voice channels: push-to-talk if noisy.<br>
+    17. Avoid unnecessary pings.<br>
+    18. Respect mods decisions.<br>
+    19. Help newcomers.<br>
+    20. Enjoy yourself and have fun!
   </div>
-</div>
-
-<div class="stats-grid">
-  <div class="card"><span>🚀 99+</span><p>Orders</p></div>
-  <div class="card"><span>⭐ 99.8%</span><p>Satisfaction</p></div>
-  <div class="card"><span>⏱ 1–2h</span><p>Delivery</p></div>
-  <div class="card"><span>💬 24/7</span><p>Support</p></div>
-</div>
-
-<div class="order-config">
-<h3>🛒 Order Configuration</h3>
-
-<label>📦 Service</label>
-<select id="service">
-  <optgroup label="🎵 TikTok Boosts">
-    <option value="tt-followers">👥 TikTok Followers</option>
-    <option value="tt-likes">❤️ TikTok Likes</option>
-    <option value="tt-views">👁️ TikTok Views</option>
-    <option value="tt-comments">💬 TikTok Comments</option>
-    <option value="tt-shares">🔗 TikTok Shares</option>
-  </optgroup>
-  <optgroup label="📸 Instagram Boosts">
-    <option value="ig-followers">👥 Instagram Followers</option>
-    <option value="ig-likes">❤️ Instagram Likes</option>
-    <option value="ig-comments">💬 Instagram Comments</option>
-    <option value="ig-views">👁️ Instagram Views</option>
-    <option value="ig-story">📖 Instagram Story Views</option>
-    <option value="ig-reels">🎬 Instagram Reels Views</option>
-  </optgroup>
-  <optgroup label="📘 Facebook Boosts">
-    <option value="fb-followers">👥 Facebook Followers</option>
-    <option value="fb-likes">👍 Facebook Likes</option>
-    <option value="fb-comments">💬 Facebook Comments</option>
-    <option value="fb-shares">🔗 Facebook Shares</option>
-    <option value="fb-page-likes">🏷️ Facebook Page Likes</option>
-    <option value="fb-reactions">❤️ Reactions in Post</option>
-  </optgroup>
-  <optgroup label="▶️ YouTube Boosts">
-    <option value="yt-subscribers">👥 YouTube Subscribers</option>
-    <option value="yt-likes">👍 YouTube Likes</option>
-    <option value="yt-comments">💬 YouTube Comments</option>
-    <option value="yt-views">👁️ YouTube Views</option>
-    <option value="yt-shares">🔗 YouTube Shares</option>
-  </optgroup>
-  <optgroup label="🐦 Other Services">
-    <option value="twitter">🐦 Twitter Followers/Likes/Retweets</option>
-    <option value="spotify">🎵 Spotify Followers</option>
-    <option value="telegram">✉️ Telegram Members</option>
-  </optgroup>
-</select>
-
-<label>📝 Description</label>
-<textarea id="desc" readonly></textarea>
-
-<label>⚙️ Quality</label>
-<select id="quality">
-<option value="standard">⭐ Standard</option>
-<option value="high">🔥 High</option>
-<option value="ultra">💎 Ultra Premium</option>
-</select>
-<textarea id="qualityDesc" readonly></textarea>
-
-<label>🔢 Quantity</label>
-<input type="number" id="quantity" placeholder="Enter quantity">
-<div class="minmax" id="minmax"></div>
-<div class="warning" id="warn"></div>
-
-<label>🔗 Link</label>
-<input type="text" id="link" placeholder="Paste profile or video link">
-
-<label>🎁 Discount Code</label>
-<textarea id="discount" placeholder="If you don’t have discount code you can leave it blank"></textarea>
-
-<div class="price-box" id="per1k"></div>
-<div class="price-box" id="total"></div>
-
-<a id="whatsappOrder" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> Order via WhatsApp
-</a>
 </div>
 
 <footer>
-<p>© All Rights Reserved – DEDYN BOOSTS</p>
-<p>Contact us: <a target="_blank" href="https://wa.me/923159180748?text=I%20need%20help%20regarding%20DeyDn%20boosts.">+92 315 9180748</a></p>
+  envy — all copyrights reserved
 </footer>
 
+<!-- 🎵 MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/23/audio_d66ea4c4f2.mp3?filename=lofi-emo-chill-11505.mp3" type="audio/mpeg">
+</audio>
+
+<button class="toggle-btn" id="toggle">🌙 emo dark</button>
+
 <script>
-// 3D Star Background
-const c=document.getElementById("space"),ctx=c.getContext("2d");
-let w,h,s=[],starColor="#3aa0ff";
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
-addEventListener("resize",resize);resize();
-for(let i=0;i<350;i++)s.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*w});
-function anim(){ctx.fillStyle=getComputedStyle(document.body).backgroundColor;ctx.fillRect(0,0,w,h);
-s.forEach(e=>{e.z-=0.6;if(e.z<=0)e.z=w;let sx=(e.x-w/2)*(w/e.z)+w/2;let sy=(e.y-h/2)*(w/e.z)+h/2;ctx.fillStyle=starColor;ctx.fillRect(sx,sy,2,2);});
-requestAnimationFrame(anim);}
-anim();
+/* Member count */
+fetch("https://discord.com/api/v9/invites/mynWqaNUSg?with_counts=true")
+.then(r=>r.json())
+.then(d=>{
+  document.getElementById("members").textContent = `${d.approximate_presence_count} online • ${d.approximate_member_count} members`;
+})
+.catch(()=>{document.getElementById("members").textContent="join us on discord";});
 
-// Services & Rates
-const services={
-"tt-followers":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"Real TikTok followers"},
-"tt-likes":{min:50,max:100000,price:{standard:0.70,high:2,ultra:5},desc:"TikTok likes boost"},
-"tt-views":{min:10000,max:10000000,price:{standard:0.40,high:2,ultra:3},desc:"TikTok views"},
-"tt-comments":{min:50,max:100000,price:{standard:0.80,high:2,ultra:6},desc:"TikTok comments"},
-"tt-shares":{min:50,max:100000,price:{standard:0.40,high:1,ultra:3},desc:"TikTok shares"},
-"ig-followers":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"Instagram followers"},
-"ig-likes":{min:50,max:100000,price:{standard:0.50,high:2,ultra:4},desc:"Instagram likes"},
-"ig-comments":{min:50,max:100000,price:{standard:0.70,high:2,ultra:5},desc:"Instagram comments"},
-"ig-views":{min:10000,max:10000000,price:{standard:0.50,high:1,ultra:3},desc:"Instagram views"},
-"ig-story":{min:10000,max:10000000,price:{standard:0.70,high:2,ultra:5.3},desc:"Instagram story views"},
-"ig-reels":{min:10000,max:10000000,price:{standard:0.50,high:2,ultra:5},desc:"Instagram reels views"},
-"fb-followers":{min:50,max:100000,price:{standard:1.72,high:3.4,ultra:7},desc:"Facebook followers"},
-"fb-likes":{min:50,max:100000,price:{standard:0.50,high:0.90,ultra:2},desc:"Facebook likes"},
-"fb-comments":{min:50,max:100000,price:{standard:1,high:2,ultra:3},desc:"Facebook comments"},
-"fb-shares":{min:50,max:100000,price:{standard:1,high:2,ultra:3},desc:"Facebook shares"},
-"fb-page-likes":{min:50,max:100000,price:{standard:1,high:2,ultra:3},desc:"Facebook page likes"},
-"fb-reactions":{min:50,max:100000,price:{standard:1,high:2,ultra:3},desc:"Facebook post reactions"},
-"yt-subscribers":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"YouTube subscribers"},
-"yt-likes":{min:50,max:100000,price:{standard:0.89,high:1.15,ultra:3.3},desc:"YouTube likes"},
-"yt-comments":{min:50,max:100000,price:{standard:0.90,high:2,ultra:3},desc:"YouTube comments"},
-"yt-views":{min:5000,max:10000000,price:{standard:0.60,high:2,ultra:3},desc:"YouTube views"},
-"yt-shares":{min:50,max:100000,price:{standard:0.70,high:2,ultra:3},desc:"YouTube shares"},
-"twitter":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"Twitter followers/likes/retweets"},
-"spotify":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"Spotify followers"},
-"telegram":{min:50,max:100000,price:{standard:2,high:4,ultra:7},desc:"Telegram members"}
-};
-const rates={USD:1,PKR:285,EUR:0.92,IRR:42000,AFN:85};
+/* Background gradient palettes for toggle */
+let darkColors=["#12000d","#26001b","#12000d","#2b001f"];
+let brightColors=["#ffd1e8","#c77dff","#ffb3d9","#3a0025"];
+let bg=document.querySelector(".bg");
 
-// DOM Elements
-const serviceSelect = document.getElementById("service");
-const qualitySelect = document.getElementById("quality");
-const quantity = document.getElementById("quantity");
-const currencySelectElem = document.getElementById("currency");
-const descBox = document.getElementById("desc");
-const qualityDesc = document.getElementById("qualityDesc");
-const minmaxBox = document.getElementById("minmax");
-const warnBox = document.getElementById("warn");
-const per1kBox = document.getElementById("per1k");
-const totalBox = document.getElementById("total");
-const linkBox = document.getElementById("link");
-const discountBox = document.getElementById("discount");
-const waBtn = document.getElementById("whatsappOrder");
-const themeSelect = document.getElementById("theme");
-const body = document.body;
-
-// Sidebar toggle
-const hamburger = document.getElementById("hamburger");
-hamburger.addEventListener("click", () => body.classList.toggle("sidebar-open"));
-
-// Theme configurations
-const themes = {
-  space: { bg:"#0b0f1a", accent:"#3aa0ff", card:"rgba(15,20,40,0.95)", sidebarBg:"linear-gradient(135deg,#0b0f1a,#1a1f2a)", sidebarText:"#fff", sidebarHover:"#3aa0ff", wa:"#3aa0ff", star:"#3aa0ff" },
-  cybergreen: { bg:"#001f0f", accent:"#00ff99", card:"rgba(0,20,10,0.95)", sidebarBg:"linear-gradient(135deg,#001f0f,#003320)", sidebarText:"#00ff99", sidebarHover:"#00ff99", wa:"#00ff99", star:"#00ff99" },
-  purple: { bg:"#1a001f", accent:"#bb00ff", card:"rgba(20,0,40,0.95)", sidebarBg:"linear-gradient(135deg,#1a001f,#400040)", sidebarText:"#bb00ff", sidebarHover:"#bb00ff", wa:"#bb00ff", star:"#bb00ff" },
-  ocean: { bg:"#001f2f", accent:"#00ccff", card:"rgba(0,15,40,0.95)", sidebarBg:"linear-gradient(135deg,#001f2f,#003b5f)", sidebarText:"#00ccff", sidebarHover:"#00ccff", wa:"#00ccff", star:"#00ccff" },
-  emerald: { bg:"#001f1a", accent:"#00ff88", card:"rgba(0,30,20,0.95)", sidebarBg:"linear-gradient(135deg,#001f1a,#003322)", sidebarText:"#00ff88", sidebarHover:"#00ff88", wa:"#00ff88", star:"#00ff88" }
+document.getElementById("toggle").onclick=()=>{
+  if(document.body.classList.contains("dark")){
+    document.body.classList.remove("dark");
+    document.body.classList.add("bright");
+    document.getElementById("toggle").textContent="✨ emo bright";
+    animateGradient(darkColors, brightColors);
+  }else{
+    document.body.classList.remove("bright");
+    document.body.classList.add("dark");
+    document.getElementById("toggle").textContent="🌙 emo dark";
+    animateGradient(brightColors, darkColors);
+  }
 };
 
-// Apply theme
-function applyTheme(name){
-  const t = themes[name];
-  Object.entries({
-    "--bg": t.bg,
-    "--accent": t.accent,
-    "--card": t.card,
-    "--sidebar-bg": t.sidebarBg,
-    "--sidebar-text": t.sidebarText,
-    "--sidebar-hover": t.sidebarHover,
-    "--wa-bg": t.wa
-  }).forEach(([key,val]) => document.documentElement.style.setProperty(key,val));
-  starColor = t.star;
-}
-
-// Load saved theme
-const savedTheme = localStorage.getItem("theme");
-if(savedTheme){
-  themeSelect.value = savedTheme;
-  applyTheme(savedTheme);
-}
-
-// Listen to theme changes
-themeSelect.addEventListener("change", () => {
-  const theme = themeSelect.value;
-  applyTheme(theme);
-  localStorage.setItem("theme", theme);
-});
-
-// Update descriptions and min/max when service changes
-// Update descriptions and min/max when service changes
-function updateService() {
-  const serv = serviceSelect.value;
-  descBox.value = services[serv].desc;
-  minmaxBox.textContent = `Min: ${services[serv].min} | Max: ${services[serv].max}`;
-  updatePrice();
-}
-serviceSelect.addEventListener("change", updateService);
-
-// Update quality description
-function updateQuality() {
-  const q = qualitySelect.value;
-  switch(q) {
-    case "standard": qualityDesc.value = "⭐ best quality | 1-17 hours delivery | no refill | possible drop"; break;
-    case "high": qualityDesc.value = "🔥 good quality | 1-8 hours delivery | 7 day refill | lowest drop"; break;
-    case "ultra": qualityDesc.value = "💎 best quality | 1-2 hours delivery | lifetime refill | no drop"; break;
-  }
-  updatePrice();
-}
-qualitySelect.addEventListener("change", updateQuality);
-
-// Price calculation
-function updatePrice() {
-  const serv = serviceSelect.value;
-  const q = qualitySelect.value;
-  const curr = currencySelectElem.value;
-  const min = services[serv].min;
-  const max = services[serv].max;
-
-  let qty = parseInt(quantity.value);
-
-  // Show warning if quantity is invalid, but don't override the input
-  if (isNaN(qty)) {
-    warnBox.textContent = "";
-    totalBox.textContent = `Total Price: ${curr} 0.00`;
-  } else if (qty < min) {
-    warnBox.textContent = `⚠️ Minimum quantity is ${min}`;
-  } else if (qty > max) {
-    warnBox.textContent = `⚠️ Maximum quantity is ${max}`;
-  } else {
-    warnBox.textContent = "";
-  }
-
-  // Calculate price only if quantity is a valid number
-  let pricePer1k = services[serv].price[q];
-  let totalPrice = (!isNaN(qty) ? (qty / 1000) * pricePer1k * rates[curr] : 0);
-  let pricePer1kConverted = pricePer1k * rates[curr];
-
-  per1kBox.textContent = `Price per 1k: ${curr} ${pricePer1kConverted.toFixed(2)}`;
-  totalBox.textContent = `Total Price: ${curr} ${totalPrice.toFixed(2)}`;
-}
-quantity.addEventListener("input", updatePrice);
-currencySelectElem.addEventListener("change", updatePrice);
-
-// WhatsApp order message
-waBtn.addEventListener("click", () => {
-  const servName = serviceSelect.options[serviceSelect.selectedIndex].text;
-  const qty = quantity.value || "Not specified";
-  const qual = qualitySelect.options[qualitySelect.selectedIndex].text;
-  const link = linkBox.value || "No link provided";
-  const discount = discountBox.value || "No code";
-  const curr = currencySelectElem.value;
-  const total = totalBox.textContent.split(":")[1].trim();
-
-  let lastOrder = localStorage.getItem("orderNumber");
-  if (!lastOrder) lastOrder = 92; 
-  else lastOrder = parseInt(lastOrder) + 1;
-  localStorage.setItem("orderNumber", lastOrder);
-
-  const orderNum = lastOrder;
-  const message = 
-`dedyn boosts new order:
-Order #${orderNum}
-
-Service: ${servName}
-Quantity: ${qty}
-Quality: ${qual}
-Link: ${link}
-Price: ${total}
-
-♻️ Please wait 1-2 hours to get your order processed.
-
-⚠️ Warning: do not change/edit this message.
-
-❤️ Thanks for ordering! (:`;
-
-  const waLink = `https://wa.me/923159180748?text=${encodeURIComponent(message)}`;
-  waBtn.setAttribute("href", waLink);
-});
-
-// Initialize defaults
-updateService();
-updateQuality();
-updatePrice();
-
-// Sidebar clicks redirect to pages
-document.querySelectorAll("#sidebar ul li").forEach(li => {
-  li.addEventListener("click", () => {
-    const section = li.textContent.trim();
-    switch(section){
-      case "📦 Order Page": window.location.href = "/"; break;
-      case "❓ FAQ": window.location.href = "/faq/"; break;
-      case "🤖 AI Chatbot": window.location.href = "/ai/"; break;
-      case "ℹ️ About Us": window.location.href = "/about/"; break;
+/* Smooth gradient animation */
+function animateGradient(from, to){
+  let steps=50;
+  let i=0;
+  let interval=setInterval(()=>{
+    let gradient="";
+    for(let j=0;j<from.length;j++){
+      let f=parseInt(from[j].replace("#",""),16);
+      let t=parseInt(to[j].replace("#",""),16);
+      let r1=(f>>16)&0xff, g1=(f>>8)&0xff, b1=f&0xff;
+      let r2=(t>>16)&0xff, g2=(t>>8)&0xff, b2=t&0xff;
+      let r=Math.round(r1+(r2-r1)*(i/steps));
+      let g=Math.round(g1+(g2-g1)*(i/steps));
+      let b=Math.round(b1+(b2-b1)*(i/steps));
+      let hex= '#' + ((1 << 24) + (r <<16) + (g <<8) + b).toString(16).slice(1);
+      gradient+=hex+(j<from.length-1?",":"");
     }
-  });
-});
+    bg.style.background="linear-gradient(45deg,"+gradient+")";
+    i++;
+    if(i>steps) clearInterval(interval);
+  },40);
+}
 </script>
+
 </body>
 </html>
