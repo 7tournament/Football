@@ -4,358 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>/envy #opened</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{
-  font-family:'Nunito',sans-serif;
-  min-height:100%;
-  overflow-x:hidden;
-  overscroll-behavior:none;
-  transition: all 2s ease;
-}
+html,body{font-family:'Nunito',sans-serif;min-height:100%;overflow-x:hidden;overscroll-behavior:none;transition: all 1.5s ease;}
 
-/* ===== BACKGROUND ===== */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  background: linear-gradient(45deg,#12000d,#26001b,#12000d,#2b001f);
+/* ===== GRADIENT LAYERS ===== */
+.bg-layer{
+  position:fixed; inset:0; z-index:-10;
+  width:100%; height:100%;
   background-size:400% 400%;
-  animation: meltBG 20s ease infinite;
-  transition: background 2s ease;
+  animation: flowBG 20s ease infinite;
+  transition: opacity 2s ease;
 }
-@keyframes meltBG{
+#bg-dark{background: linear-gradient(45deg,#12000d,#26001b,#12000d,#2b001f); opacity:1;}
+#bg-bright{background: linear-gradient(45deg,#ffd1e8,#c77dff,#ffb3d9,#3a0025); opacity:0;}
+
+@keyframes flowBG{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
+/* ===== CSS VARIABLES FOR ELEMENT COLORS ===== */
+:root{
+  --card-bg: rgba(40,0,30,.55);
+  --card-color: #ffb3d9;
+  --header-bg: rgba(40,0,30,.65);
+  --header-color: #ffb3d9;
+  --join-bg: linear-gradient(135deg,#ff8fbf,#c77dff,#ffb3d9);
+  --join-color:#fff;
+  --footer-color: rgba(255,255,255,.6);
+  --member-bg: rgba(255,255,255,.7);
+  --member-color:#000;
+}
+
+body.bright{
+  --card-bg: rgba(255,192,220,.55);
+  --card-color:#3a001f;
+  --header-bg: rgba(255,192,220,.65);
+  --header-color:#ff4fbf;
+  --join-bg: linear-gradient(135deg,#ffb3d9,#c77dff,#ff8fbf);
+  --join-color:#fff;
+  --footer-color: rgba(60,0,40,.7);
+  --member-bg: rgba(255,180,220,.7);
+  --member-color:#3a001f;
+}
+
 /* ===== HEADER ===== */
 .header{
-  margin:24px auto;
-  max-width:420px;
-  padding:28px;
-  border-radius:36px;
-  backdrop-filter: blur(22px);
-  text-align:center;
-  animation: headerGlow 6s ease-in-out infinite alternate;
-  transition: all 2s ease;
+  margin:24px auto; max-width:420px; padding:28px; border-radius:36px;
+  backdrop-filter: blur(22px); text-align:center;
+  background: var(--header-bg); color: var(--header-color);
+  box-shadow:0 30px 80px rgba(255,120,180,.45); transition: all 1.5s ease;
 }
-
-body.dark .header{
-  background: rgba(40,0,30,0.65);
-  box-shadow:0 30px 80px rgba(255,120,180,.45);
-  color:#ffb3d9;
-}
-body.bright .header{
-  background: rgba(255,192,220,.65);
-  box-shadow:0 30px 80px rgba(255,150,220,.6);
-  color:#ff4fbf;
-}
-
-@keyframes headerGlow{
-  0%{box-shadow:0 25px 70px rgba(255,140,190,.4);}
-  100%{box-shadow:0 40px 110px rgba(255,140,190,.7);}
-}
-
 .header h1{
-  font-family:'Unbounded',cursive;
-  font-size:1.9rem;
-  letter-spacing:.14em;
+  font-family:'Unbounded',cursive; font-size:1.9rem; letter-spacing:.14em;
   background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  transition: all 2s ease;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
 
 /* ===== MAIN ===== */
-.main{
-  padding:80px 28px 220px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:40px;
-  text-align:center;
-}
+.main{padding:80px 28px 220px; display:flex; flex-direction:column; align-items:center; gap:40px; text-align:center;}
 
 /* ===== LOGO CARD ===== */
-.logo-card{
-  width:320px;
-  border-radius:38px;
-  overflow:hidden;
-  position:relative;
-  animation: cardGlow 8s ease-in-out infinite alternate;
-  transition: all 2s ease;
-}
-body.dark .logo-card{
-  background: rgba(30,0,20,.9);
-  box-shadow:0 25px 80px rgba(0,0,0,.7),0 0 50px rgba(255,120,180,.35);
-}
-body.bright .logo-card{
-  background: rgba(255,192,220,.85);
-  box-shadow:0 25px 80px rgba(255,140,200,.45),0 0 50px rgba(255,180,220,.35);
-}
-
-.logo-card img{
-  width:100%;
-  display:block;
-}
-
-.logo-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(to bottom,transparent 50%, rgba(0,0,0,.6));
-}
-
-.logo-text{
-  position:absolute;
-  bottom:16px;
-  width:100%;
-  text-align:center;
-  font-family:'Unbounded',cursive;
-  font-size:1.6rem;
-  letter-spacing:.24em;
-  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px rgba(255,140,190,.9);
-  z-index:2;
-  animation: textGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow{
-  0%{text-shadow:0 0 20px rgba(255,120,180,.7);}
-  100%{text-shadow:0 0 35px rgba(255,140,190,.9);}
-}
+.logo-card{width:320px; border-radius:38px; overflow:hidden; position:relative;
+background: var(--card-bg); color: var(--card-color); box-shadow:0 25px 80px rgba(0,0,0,.45); transition: all 1.5s ease;}
+.logo-card img{width:100%; display:block;}
+.logo-card::after{content:"";position:absolute; inset:0;background: linear-gradient(to bottom,transparent 50%, rgba(0,0,0,.6));}
+.logo-text{position:absolute; bottom:16px; width:100%; text-align:center; font-family:'Unbounded',cursive; font-size:1.6rem; letter-spacing:.24em; background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 25px rgba(255,140,190,.9);}
 
 /* ===== MEMBER COUNT ===== */
-.members{
-  padding:14px 28px;
-  border-radius:999px;
-  backdrop-filter: blur(16px);
-  font-family:'Unbounded', cursive;
-  font-size:.85rem;
-  letter-spacing:.12em;
-  color:#000;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
-  transition: all 2s ease;
-}
-
-body.dark .members{background: rgba(255,255,255,.7);}
-body.bright .members{background: rgba(255,180,220,.7); color:#3a001f;}
+.members{padding:14px 28px; border-radius:999px; backdrop-filter: blur(16px); font-family:'Unbounded',cursive; font-size:.85rem; letter-spacing:.12em; text-align:center; background: var(--member-bg); color: var(--member-color); box-shadow:0 10px 30px rgba(0,0,0,.25); transition: all 1.5s ease;}
 
 /* ===== BUTTON ===== */
-.join{
-  padding:18px 56px;
-  border-radius:999px;
-  font-family:'Unbounded',cursive;
-  letter-spacing:.14em;
-  color:#fff;
-  text-decoration:none;
-  box-shadow:0 0 40px rgba(255,140,190,.9);
-  transition:all 2s ease, transform .25s ease;
-}
-body.dark .join{
-  background: linear-gradient(135deg,#ff8fbf,#c77dff,#ffb3d9);
-}
-body.bright .join{
-  background: linear-gradient(135deg,#ffb3d9,#c77dff,#ff8fbf);
-}
+.join{padding:18px 56px; border-radius:999px; font-family:'Unbounded',cursive; letter-spacing:.14em; color: var(--join-color); text-decoration:none; background: var(--join-bg); box-shadow:0 0 40px rgba(255,140,190,.9); transition: all 1.5s ease, transform .25s ease;}
 .join:hover{transform:translateY(-3px) scale(1.05);}
 
 /* ===== SECTIONS ===== */
-.section-title{
-  font-family:'Unbounded', cursive;
-  font-size:1.2rem;
-  letter-spacing:.22em;
-  margin-top:40px;
-  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation: titleGlow 6s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow{
-  0%{text-shadow:0 0 15px rgba(255,140,190,.5);}
-  100%{text-shadow:0 0 35px rgba(255,180,220,.9);}
-}
-
-.card{
-  max-width:420px;
-  padding:30px;
-  border-radius:32px;
-  backdrop-filter: blur(22px);
-  line-height:1.8;
-  text-align:center;
-  animation: meltCard 12s ease-in-out infinite alternate;
-  font-family:'Nunito', sans-serif;
-  transition: all 2s ease;
-}
-
-body.dark .card{
-  background:rgba(40,0,30,.55);
-  color:#ffb3d9;
-  box-shadow:0 22px 60px rgba(0,0,0,.45);
-}
-body.bright .card{
-  background:rgba(255,192,220,.55);
-  color:#3a001f;
-  box-shadow:0 22px 60px rgba(255,140,200,.25);
-}
-
-@keyframes meltCard{
-  0%{opacity:0.95;}
-  50%{opacity:1;}
-  100%{opacity:0.95;}
-}
+.section-title{font-family:'Unbounded',cursive; font-size:1.2rem; letter-spacing:.22em; margin-top:40px; background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+.card{max-width:420px; padding:30px; border-radius:32px; backdrop-filter: blur(22px); line-height:1.8; text-align:center; background: var(--card-bg); color: var(--card-color); box-shadow:0 22px 60px rgba(0,0,0,.45); transition: all 1.5s ease;}
 
 /* ===== FOOTER ===== */
-footer{
-  padding:40px;
-  text-align:center;
-  font-family:'Unbounded',cursive;
-  font-size:.75rem;
-  letter-spacing:.18em;
-  animation: footerGlow 10s ease-in-out infinite alternate;
-  transition: all 2s ease;
-}
+footer{padding:40px; text-align:center; font-family:'Unbounded',cursive; font-size:.75rem; letter-spacing:.18em; color: var(--footer-color); transition: all 1.5s ease;}
 
-body.dark footer{color:rgba(255,255,255,.6);}
-body.bright footer{color:rgba(60,0,40,.7);}
-
-/* ===== EMO TOGGLE BUTTON ===== */
-.toggle-btn{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  padding:14px 20px;
-  border-radius:999px;
-  backdrop-filter: blur(20px);
-  font-family:'Unbounded',cursive;
-  cursor:pointer;
-  border:none;
-  font-size:.9rem;
-  transition: all 2s ease;
-}
-
-body.dark .toggle-btn{background: rgba(40,0,30,.75); color:#fff; box-shadow:0 20px 50px rgba(255,120,180,.45);}
-body.bright .toggle-btn{background: rgba(255,180,220,.75); color:#3a001f; box-shadow:0 20px 50px rgba(255,140,220,.45);}
+/* ===== TOGGLE BUTTON ===== */
+.toggle-btn{position:fixed; bottom:18px; right:18px; width:50px; height:50px; border-radius:50%; backdrop-filter: blur(20px); cursor:pointer; border:none; font-size:1.4rem; transition: all 1.5s ease; background: var(--member-bg);}
 </style>
 </head>
-
 <body class="dark">
-<div class="bg"></div>
 
-<div class="header">
-  <h1>/envy #opened</h1>
-</div>
+<!-- TWO OVERLAPPING GRADIENT LAYERS -->
+<div id="bg-dark" class="bg-layer"></div>
+<div id="bg-bright" class="bg-layer"></div>
+
+<div class="header"><h1>/envy #opened</h1></div>
 
 <div class="main">
   <div class="logo-card">
     <img src="https://raw.githubusercontent.com/7tournament/Football/main/IMG_1531.jpeg" alt="envy">
-    <div class="logo-text">/envy</div>
+    <div class="logo-text">/envy 🌸</div>
   </div>
 
-  <div class="members" id="members">loading…</div>
+  <div class="members" id="members">loading… ⚡</div>
 
-  <a class="join" href="https://discord.gg/mynWqaNUSg" target="_blank">join server</a>
+  <a class="join" href="https://discord.gg/mynWqaNUSg" target="_blank">join server 🎵</a>
 
-  <div class="section-title">about us</div>
-  <div class="card">
-    We’re a calm, friendly space for hangouts, conversations, and comfort. Emo aesthetic, vaporwave vibes, cozy community.
-  </div>
+  <div class="section-title">about us 🌸</div>
+  <div class="card">We’re a calm, friendly space for hangouts, conversations, and comfort. Emo aesthetic, vaporwave vibes, cozy community. 🌙💖</div>
 
-  <div class="section-title">rules</div>
+  <div class="section-title">rules ⚠️</div>
   <div class="card" id="rules-card">
-    1. Be respectful and kind.<br>
-    2. No harassment or hate speech.<br>
-    3. Respect boundaries and personal space.<br>
-    4. No spamming, scams, or advertisements.<br>
-    5. Follow Discord's Terms of Service.<br>
-    6. Keep channels organized.<br>
-    7. Appropriate usernames and avatars.<br>
-    8. No NSFW unless designated.<br>
-    9. Report issues respectfully.<br>
-    10. Protect the chill vibe.<br>
-    11. Participate in hangouts.<br>
-    12. Stay active but don’t pressure others.<br>
-    13. Be inclusive.<br>
-    14. No drama or personal attacks.<br>
-    15. Keep memes tasteful.<br>
-    16. Voice channels: push-to-talk if noisy.<br>
-    17. Avoid unnecessary pings.<br>
-    18. Respect mods decisions.<br>
-    19. Help newcomers.<br>
-    20. Enjoy yourself and have fun!
+    1. Be respectful and kind.<br>2. No harassment or hate speech.<br>3. Respect boundaries.<br>4. No spamming or scams.<br>5. Follow Discord TOS.<br>6. Keep channels organized.<br>7. Appropriate usernames & avatars.<br>8. No NSFW unless designated.<br>9. Report issues respectfully.<br>10. Protect the chill vibe.<br>11. Hangout and socialize.<br>12. Stay active but don’t pressure others.<br>13. Be inclusive.<br>14. No drama.<br>15. Keep memes tasteful.<br>16. Voice channels: push-to-talk.<br>17. Avoid unnecessary pings.<br>18. Respect mod decisions.<br>19. Help newcomers.<br>20. Enjoy yourself! 🌸
   </div>
 </div>
 
-<footer>
-  envy — all copyrights reserved
-</footer>
+<footer>envy — all copyrights reserved</footer>
 
-<!-- 🎵 MUSIC -->
 <audio autoplay loop>
   <source src="https://cdn.pixabay.com/download/audio/2023/03/23/audio_d66ea4c4f2.mp3?filename=lofi-emo-chill-11505.mp3" type="audio/mpeg">
 </audio>
 
-<button class="toggle-btn" id="toggle">🌙 emo dark</button>
+<button class="toggle-btn" id="toggle">🌙</button>
 
 <script>
 /* Member count */
 fetch("https://discord.com/api/v9/invites/mynWqaNUSg?with_counts=true")
 .then(r=>r.json())
 .then(d=>{
-  document.getElementById("members").textContent = `${d.approximate_presence_count} online • ${d.approximate_member_count} members`;
+  document.getElementById("members").textContent = `${d.approximate_presence_count} online • ${d.approximate_member_count} members ⚡`;
 })
-.catch(()=>{document.getElementById("members").textContent="join us on discord";});
+.catch(()=>{document.getElementById("members").textContent="join us on discord ⚡";});
 
-/* Background gradient palettes for toggle */
-let darkColors=["#12000d","#26001b","#12000d","#2b001f"];
-let brightColors=["#ffd1e8","#c77dff","#ffb3d9","#3a0025"];
-let bg=document.querySelector(".bg");
+/* MELTED TOGGLE */
+const bgDark=document.getElementById("bg-dark");
+const bgBright=document.getElementById("bg-bright");
+const toggleBtn=document.getElementById("toggle");
 
-document.getElementById("toggle").onclick=()=>{
+toggleBtn.onclick=()=>{
   if(document.body.classList.contains("dark")){
-    document.body.classList.remove("dark");
-    document.body.classList.add("bright");
-    document.getElementById("toggle").textContent="✨ emo bright";
-    animateGradient(darkColors, brightColors);
+    document.body.classList.remove("dark"); document.body.classList.add("bright");
+    toggleBtn.textContent="✨";
+    bgDark.style.opacity=0; bgBright.style.opacity=1;
   }else{
-    document.body.classList.remove("bright");
-    document.body.classList.add("dark");
-    document.getElementById("toggle").textContent="🌙 emo dark";
-    animateGradient(brightColors, darkColors);
+    document.body.classList.remove("bright"); document.body.classList.add("dark");
+    toggleBtn.textContent="🌙";
+    bgDark.style.opacity=1; bgBright.style.opacity=0;
   }
 };
-
-/* Smooth gradient animation */
-function animateGradient(from, to){
-  let steps=50;
-  let i=0;
-  let interval=setInterval(()=>{
-    let gradient="";
-    for(let j=0;j<from.length;j++){
-      let f=parseInt(from[j].replace("#",""),16);
-      let t=parseInt(to[j].replace("#",""),16);
-      let r1=(f>>16)&0xff, g1=(f>>8)&0xff, b1=f&0xff;
-      let r2=(t>>16)&0xff, g2=(t>>8)&0xff, b2=t&0xff;
-      let r=Math.round(r1+(r2-r1)*(i/steps));
-      let g=Math.round(g1+(g2-g1)*(i/steps));
-      let b=Math.round(b1+(b2-b1)*(i/steps));
-      let hex= '#' + ((1 << 24) + (r <<16) + (g <<8) + b).toString(16).slice(1);
-      gradient+=hex+(j<from.length-1?",":"");
-    }
-    bg.style.background="linear-gradient(45deg,"+gradient+")";
-    i++;
-    if(i>steps) clearInterval(interval);
-  },40);
-}
 </script>
 
 </body>
