@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⬛ MATRIX IP · black & green HD + auto laugh</title>
-    <!-- clean, sharp, black & green design – HD feel with autoplay looping laugh -->
+    <title>⬛ YOUR IP · black & green</title>
+    <!-- simple, each visitor sees their own IP and location -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +14,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: #030303;
             font-family: 'JetBrains Mono', monospace;
@@ -26,7 +25,6 @@
             background-image: radial-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
         }
-
         .ip-box {
             max-width: 750px;
             width: 100%;
@@ -36,53 +34,38 @@
             box-shadow: 0 0 30px #1f9a1f55, 0 15px 40px #000000dd;
             padding: 2.2rem 2.5rem;
             color: #b3ffb3;
-            backdrop-filter: blur(2px);
-            transition: border-color 0.2s, box-shadow 0.3s;
         }
-
-        .ip-box:hover {
-            border-color: #3aff3a;
-            box-shadow: 0 0 45px #2eff2eaa, 0 20px 50px black;
-        }
-
         .ip-header {
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2rem;
             border-bottom: 1px solid #2b9e2b;
             padding-bottom: 1rem;
         }
-
         .ip-header i {
             font-size: 2.2rem;
             color: #22ff22;
             text-shadow: 0 0 12px #0f0;
-            background: transparent;
         }
-
         .ip-header h2 {
             font-weight: 500;
             font-size: 2rem;
-            letter-spacing: -0.5px;
             color: #d0ffd0;
             text-transform: uppercase;
             text-shadow: 0 0 5px #0f0;
         }
-
         .live-badge {
             margin-left: auto;
             background: #143014;
             padding: 0.4rem 1.4rem;
             border-radius: 40px;
-            font-size: 0.9rem;
             border: 1px solid #2aff2a;
             color: #b0ffb0;
-            text-transform: uppercase;
+            font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 1px;
         }
-
         .info-row {
             display: flex;
             align-items: baseline;
@@ -91,11 +74,6 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-
-        .info-row:last-of-type {
-            border-bottom: none;
-        }
-
         .info-label {
             width: 130px;
             font-size: 1rem;
@@ -105,7 +83,6 @@
             letter-spacing: 1.2px;
             text-shadow: 0 0 4px #1f9a1f;
         }
-
         .info-value {
             font-weight: 500;
             font-size: 1.3rem;
@@ -113,9 +90,7 @@
             word-break: break-word;
             flex: 1;
             text-shadow: 0 0 8px #3aff3a;
-            font-family: 'JetBrains Mono', monospace;
         }
-
         .info-value small {
             font-size: 0.8rem;
             font-weight: 400;
@@ -126,7 +101,6 @@
             color: #aaffaa;
             border: 1px solid #2aff2a;
         }
-
         .extra-row {
             margin-top: 1.8rem;
             background: #0e1a0e;
@@ -137,9 +111,7 @@
             align-items: center;
             gap: 2rem;
             border: 1px solid #2b9e2b;
-            box-shadow: inset 0 0 10px #00000077, 0 0 15px #1f9a1f33;
         }
-
         .extra-item {
             display: flex;
             align-items: center;
@@ -147,7 +119,6 @@
             color: #b5ffb5;
             font-size: 1rem;
         }
-
         .extra-item i {
             color: #22ff22;
             width: 1.8rem;
@@ -155,7 +126,6 @@
             font-size: 1.3rem;
             filter: drop-shadow(0 0 6px #0f0);
         }
-
         .refresh-btn {
             background: #102010;
             border: 2px solid #29cf29;
@@ -174,9 +144,8 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 0 0 20px #0f0b0f, 0 5px 10px #000;
+            box-shadow: 0 0 20px #0f0b0f;
         }
-
         .refresh-btn:hover {
             background: #1f3a1f;
             border-color: #4aff4a;
@@ -184,39 +153,12 @@
             box-shadow: 0 0 35px #2aff2a;
             transform: scale(1.02);
         }
-
-        /* laugh indicator – subtle green */
-        .laugh-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #0f1f0f;
-            border-radius: 3rem;
-            border: 1px solid #2b9e2b;
-            color: #b5ffb5;
-            font-size: 0.9rem;
-        }
-
-        .laugh-indicator i {
-            color: #5aff5a;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; text-shadow: 0 0 5px #0f0; }
-            50% { opacity: 0.6; text-shadow: 0 0 15px #0f0; }
-            100% { opacity: 1; text-shadow: 0 0 5px #0f0; }
-        }
-
         .loading {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             color: #8aff8a;
         }
-
         .spinner {
             width: 18px;
             height: 18px;
@@ -225,93 +167,74 @@
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        .error {
-            background: #2c2020;
-            color: #ff9191;
-            padding: 0.3rem 1.2rem;
-            border-radius: 2rem;
-            border: 1px solid #ff3a3a;
+        .footnote {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #4f8a4f;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
-    <!-- hidden audio element that autoplays and loops a laughing sound -->
-    <audio id="laughSound" autoplay loop volume="0.3">
-        <source src="https://www.soundjay.com/human/sounds/laugh-01.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <div class="ip-box" id="ipBox">
+    <div class="ip-box">
         <div class="ip-header">
-            <i class="fas fa-terminal"></i>
-            <h2>➤ IP GEO</h2>
-            <span class="live-badge"><i class="fas fa-circle" style="color:#2aff2a; font-size:0.7rem;"></i> ONLINE</span>
+            <i class="fas fa-user-secret"></i>
+            <h2>➤ this you lil bro</h2>
+            <span class="live-badge"><i class="fas fa-circle" style="color:#2aff2a; font-size:0.7rem;"></i> wyd here lil chick</span>
         </div>
 
-        <!-- laugh indicator shows sound is active -->
-        <div class="laugh-indicator">
-            <i class="fas fa-face-laugh-squint"></i> Laughing sound is looping automatically
-        </div>
-
-        <!-- ipv4 row -->
+        <!-- IP address row -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-fingerprint"></i> IPv4</span>
             <span class="info-value" id="ipv4Display">
-                <span class="loading"><span class="spinner"></span> scanning...</span>
+                <span class="loading"><span class="spinner"></span> detecting...</span>
             </span>
         </div>
-
-        <!-- city -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-city"></i> city</span>
             <span class="info-value" id="cityDisplay">—</span>
         </div>
-
-        <!-- region -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-map-pin"></i> region</span>
             <span class="info-value" id="regionDisplay">—</span>
         </div>
-
-        <!-- country -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-flag"></i> country</span>
             <span class="info-value" id="countryDisplay">—</span>
         </div>
-
-        <!-- postal code -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-mail-bulk"></i> postal</span>
             <span class="info-value" id="postalDisplay">—</span>
         </div>
-
-        <!-- coordinates -->
         <div class="info-row">
             <span class="info-label"><i class="fas fa-map-marked-alt"></i> coordinates</span>
             <span class="info-value" id="coordDisplay">—</span>
         </div>
 
-        <!-- extra etc block: timezone, isp, asn -->
-        <div class="extra-row" id="extraContainer">
-            <div class="extra-item" id="timezoneItem">
+        <!-- extra: timezone, ISP, ASN -->
+        <div class="extra-row">
+            <div class="extra-item">
                 <i class="fas fa-clock"></i>
                 <span id="timezoneDisplay">⏳ acquiring...</span>
             </div>
-            <div class="extra-item" id="ispItem">
+            <div class="extra-item">
                 <i class="fas fa-building"></i>
                 <span id="ispDisplay">—</span>
             </div>
-            <div class="extra-item" id="asnItem">
+            <div class="extra-item">
                 <i class="fas fa-diagram-project"></i>
                 <span id="asnDisplay">—</span>
             </div>
         </div>
 
-        <!-- refresh button (doesn't affect sound) -->
-        <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> refresh data</button>
+        <!-- refresh button -->
+        <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> refresh your data</button>
+
+        <!-- note explaining it's the visitor's own IP -->
+        <div class="footnote">
+            ⚡ This is <strong>made</strong> by mace, voident.
+        </div>
     </div>
 
     <!-- Font Awesome -->
@@ -319,7 +242,6 @@
 
     <script>
         (function() {
-            // DOM elements
             const ipv4Span = document.getElementById('ipv4Display');
             const citySpan = document.getElementById('cityDisplay');
             const regionSpan = document.getElementById('regionDisplay');
@@ -330,27 +252,9 @@
             const ispSpan = document.getElementById('ispDisplay');
             const asnSpan = document.getElementById('asnDisplay');
             const refreshBtn = document.getElementById('refreshBtn');
-            
-            // Optional: control audio volume
-            const audio = document.getElementById('laughSound');
-            if (audio) {
-                audio.volume = 0.3; // set comfortable volume
-                // In case autoplay is blocked, we try to play on any user interaction later? 
-                // But per request, it should start automatically. We'll still attempt to play after load.
-                // However, browsers may block it. We'll add a small workaround: on body click, enable.
-                // But that would require a click, which we want to avoid. We'll rely on autoplay.
-                // Some browsers allow autoplay if the user has interacted with the site before.
-                // We'll also try to play programmatically after load.
-                window.addEventListener('load', function() {
-                    audio.play().catch(e => {
-                        console.log('Autoplay blocked – browser restrictions prevent automatic laugh. You may need to click the page once to enable sound.');
-                        // Show a subtle hint but don't force click.
-                    });
-                });
-            }
 
             function setLoading() {
-                ipv4Span.innerHTML = '<span class="loading"><span class="spinner"></span> scanning...</span>';
+                ipv4Span.innerHTML = '<span class="loading"><span class="spinner"></span> detecting...</span>';
                 citySpan.textContent = '—';
                 regionSpan.textContent = '—';
                 countrySpan.textContent = '—';
@@ -389,8 +293,8 @@
                 }
             }
 
-            function showError(msg) {
-                ipv4Span.innerHTML = `<span class="error">⚠️ failed</span>`;
+            function showError() {
+                ipv4Span.innerHTML = `<span style="color:#ff8888;">⚠️ failed to load</span>`;
                 citySpan.textContent = '—';
                 regionSpan.textContent = '—';
                 countrySpan.textContent = '—';
@@ -404,6 +308,7 @@
             function fetchIPData() {
                 setLoading();
 
+                // Try primary API (ipapi.co)
                 fetch('https://ipapi.co/json/')
                     .then(response => {
                         if (!response.ok) throw new Error('ipapi failed');
@@ -412,8 +317,8 @@
                     .then(data => {
                         updateUI(data);
                     })
-                    .catch(err => {
-                        console.warn('ipapi.co failed, fallback to ipinfo.io', err);
+                    .catch(() => {
+                        // Fallback to ipinfo.io
                         fetch('https://ipinfo.io/json?token=')
                             .then(res => res.json())
                             .then(ipinfo => {
@@ -437,9 +342,8 @@
                                 }
                                 updateUI(adapted);
                             })
-                            .catch(err2 => {
-                                console.error('both APIs failed', err2);
-                                showError('unavailable');
+                            .catch(() => {
+                                showError();
                             });
                     });
             }
