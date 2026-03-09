@@ -1,158 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>/envy #opened</title>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{font-family:'Nunito',sans-serif;min-height:100%;overflow-x:hidden;overscroll-behavior:none;transition: all 1.5s ease;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⬛ MATRIX IP · black & green HD + auto laugh</title>
+    <!-- clean, sharp, black & green design – HD feel with autoplay looping laugh -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ===== GRADIENT LAYERS ===== */
-.bg-layer{
-  position:fixed; inset:0; z-index:-10;
-  width:100%; height:100%;
-  background-size:400% 400%;
-  animation: flowBG 20s ease infinite;
-  transition: opacity 2s ease;
-}
-#bg-dark{background: linear-gradient(45deg,#12000d,#26001b,#12000d,#2b001f); opacity:1;}
-#bg-bright{background: linear-gradient(45deg,#ffd1e8,#c77dff,#ffb3d9,#3a0025); opacity:0;}
+        body {
+            background: #030303;
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background-image: radial-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
 
-@keyframes flowBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
+        .ip-box {
+            max-width: 750px;
+            width: 100%;
+            background: #0b0f0b;
+            border: 2px solid #1f9a1f;
+            border-radius: 2rem;
+            box-shadow: 0 0 30px #1f9a1f55, 0 15px 40px #000000dd;
+            padding: 2.2rem 2.5rem;
+            color: #b3ffb3;
+            backdrop-filter: blur(2px);
+            transition: border-color 0.2s, box-shadow 0.3s;
+        }
 
-/* ===== CSS VARIABLES FOR ELEMENT COLORS ===== */
-:root{
-  --card-bg: rgba(40,0,30,.55);
-  --card-color: #ffb3d9;
-  --header-bg: rgba(40,0,30,.65);
-  --header-color: #ffb3d9;
-  --join-bg: linear-gradient(135deg,#ff8fbf,#c77dff,#ffb3d9);
-  --join-color:#fff;
-  --footer-color: rgba(255,255,255,.6);
-  --member-bg: rgba(255,255,255,.7);
-  --member-color:#000;
-}
+        .ip-box:hover {
+            border-color: #3aff3a;
+            box-shadow: 0 0 45px #2eff2eaa, 0 20px 50px black;
+        }
 
-body.bright{
-  --card-bg: rgba(255,192,220,.55);
-  --card-color:#3a001f;
-  --header-bg: rgba(255,192,220,.65);
-  --header-color:#ff4fbf;
-  --join-bg: linear-gradient(135deg,#ffb3d9,#c77dff,#ff8fbf);
-  --join-color:#fff;
-  --footer-color: rgba(60,0,40,.7);
-  --member-bg: rgba(255,180,220,.7);
-  --member-color:#3a001f;
-}
+        .ip-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid #2b9e2b;
+            padding-bottom: 1rem;
+        }
 
-/* ===== HEADER ===== */
-.header{
-  margin:24px auto; max-width:420px; padding:28px; border-radius:36px;
-  backdrop-filter: blur(22px); text-align:center;
-  background: var(--header-bg); color: var(--header-color);
-  box-shadow:0 30px 80px rgba(255,120,180,.45); transition: all 1.5s ease;
-}
-.header h1{
-  font-family:'Unbounded',cursive; font-size:1.9rem; letter-spacing:.14em;
-  background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
+        .ip-header i {
+            font-size: 2.2rem;
+            color: #22ff22;
+            text-shadow: 0 0 12px #0f0;
+            background: transparent;
+        }
 
-/* ===== MAIN ===== */
-.main{padding:80px 28px 220px; display:flex; flex-direction:column; align-items:center; gap:40px; text-align:center;}
+        .ip-header h2 {
+            font-weight: 500;
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+            color: #d0ffd0;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #0f0;
+        }
 
-/* ===== LOGO CARD ===== */
-.logo-card{width:320px; border-radius:38px; overflow:hidden; position:relative;
-background: var(--card-bg); color: var(--card-color); box-shadow:0 25px 80px rgba(0,0,0,.45); transition: all 1.5s ease;}
-.logo-card img{width:100%; display:block;}
-.logo-card::after{content:"";position:absolute; inset:0;background: linear-gradient(to bottom,transparent 50%, rgba(0,0,0,.6));}
-.logo-text{position:absolute; bottom:16px; width:100%; text-align:center; font-family:'Unbounded',cursive; font-size:1.6rem; letter-spacing:.24em; background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 25px rgba(255,140,190,.9);}
+        .live-badge {
+            margin-left: auto;
+            background: #143014;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid #2aff2a;
+            color: #b0ffb0;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
 
-/* ===== MEMBER COUNT ===== */
-.members{padding:14px 28px; border-radius:999px; backdrop-filter: blur(16px); font-family:'Unbounded',cursive; font-size:.85rem; letter-spacing:.12em; text-align:center; background: var(--member-bg); color: var(--member-color); box-shadow:0 10px 30px rgba(0,0,0,.25); transition: all 1.5s ease;}
+        .info-row {
+            display: flex;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #226622;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-/* ===== BUTTON ===== */
-.join{padding:18px 56px; border-radius:999px; font-family:'Unbounded',cursive; letter-spacing:.14em; color: var(--join-color); text-decoration:none; background: var(--join-bg); box-shadow:0 0 40px rgba(255,140,190,.9); transition: all 1.5s ease, transform .25s ease;}
-.join:hover{transform:translateY(-3px) scale(1.05);}
+        .info-row:last-of-type {
+            border-bottom: none;
+        }
 
-/* ===== SECTIONS ===== */
-.section-title{font-family:'Unbounded',cursive; font-size:1.2rem; letter-spacing:.22em; margin-top:40px; background: linear-gradient(45deg,#ff8fbf,#c77dff,#ffb3d9); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-.card{max-width:420px; padding:30px; border-radius:32px; backdrop-filter: blur(22px); line-height:1.8; text-align:center; background: var(--card-bg); color: var(--card-color); box-shadow:0 22px 60px rgba(0,0,0,.45); transition: all 1.5s ease;}
+        .info-label {
+            width: 130px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #55ff55;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            text-shadow: 0 0 4px #1f9a1f;
+        }
 
-/* ===== FOOTER ===== */
-footer{padding:40px; text-align:center; font-family:'Unbounded',cursive; font-size:.75rem; letter-spacing:.18em; color: var(--footer-color); transition: all 1.5s ease;}
+        .info-value {
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: #ffffff;
+            word-break: break-word;
+            flex: 1;
+            text-shadow: 0 0 8px #3aff3a;
+            font-family: 'JetBrains Mono', monospace;
+        }
 
-/* ===== TOGGLE BUTTON ===== */
-.toggle-btn{position:fixed; bottom:18px; right:18px; width:50px; height:50px; border-radius:50%; backdrop-filter: blur(20px); cursor:pointer; border:none; font-size:1.4rem; transition: all 1.5s ease; background: var(--member-bg);}
-</style>
+        .info-value small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            background: #1b3b1b;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            margin-left: 1rem;
+            color: #aaffaa;
+            border: 1px solid #2aff2a;
+        }
+
+        .extra-row {
+            margin-top: 1.8rem;
+            background: #0e1a0e;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            border: 1px solid #2b9e2b;
+            box-shadow: inset 0 0 10px #00000077, 0 0 15px #1f9a1f33;
+        }
+
+        .extra-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #b5ffb5;
+            font-size: 1rem;
+        }
+
+        .extra-item i {
+            color: #22ff22;
+            width: 1.8rem;
+            text-align: center;
+            font-size: 1.3rem;
+            filter: drop-shadow(0 0 6px #0f0);
+        }
+
+        .refresh-btn {
+            background: #102010;
+            border: 2px solid #29cf29;
+            color: #b0ffb0;
+            padding: 0.9rem 2rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 2rem;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px #0f0b0f, 0 5px 10px #000;
+        }
+
+        .refresh-btn:hover {
+            background: #1f3a1f;
+            border-color: #4aff4a;
+            color: #ffffff;
+            box-shadow: 0 0 35px #2aff2a;
+            transform: scale(1.02);
+        }
+
+        /* laugh indicator – subtle green */
+        .laugh-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #0f1f0f;
+            border-radius: 3rem;
+            border: 1px solid #2b9e2b;
+            color: #b5ffb5;
+            font-size: 0.9rem;
+        }
+
+        .laugh-indicator i {
+            color: #5aff5a;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; text-shadow: 0 0 5px #0f0; }
+            50% { opacity: 0.6; text-shadow: 0 0 15px #0f0; }
+            100% { opacity: 1; text-shadow: 0 0 5px #0f0; }
+        }
+
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #8aff8a;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid #284f28;
+            border-top-color: #22ff22;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .error {
+            background: #2c2020;
+            color: #ff9191;
+            padding: 0.3rem 1.2rem;
+            border-radius: 2rem;
+            border: 1px solid #ff3a3a;
+        }
+    </style>
 </head>
-<body class="dark">
+<body>
+    <!-- hidden audio element that autoplays and loops a laughing sound -->
+    <audio id="laughSound" autoplay loop volume="0.3">
+        <source src="https://www.soundjay.com/human/sounds/laugh-01.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<!-- TWO OVERLAPPING GRADIENT LAYERS -->
-<div id="bg-dark" class="bg-layer"></div>
-<div id="bg-bright" class="bg-layer"></div>
+    <div class="ip-box" id="ipBox">
+        <div class="ip-header">
+            <i class="fas fa-terminal"></i>
+            <h2>➤ IP GEO</h2>
+            <span class="live-badge"><i class="fas fa-circle" style="color:#2aff2a; font-size:0.7rem;"></i> ONLINE</span>
+        </div>
 
-<div class="header"><h1>/envy #opened</h1></div>
+        <!-- laugh indicator shows sound is active -->
+        <div class="laugh-indicator">
+            <i class="fas fa-face-laugh-squint"></i> Laughing sound is looping automatically
+        </div>
 
-<div class="main">
-  <div class="logo-card">
-    <img src="https://raw.githubusercontent.com/7tournament/Football/main/IMG_1531.jpeg" alt="envy">
-    <div class="logo-text">/envy 🌸</div>
-  </div>
+        <!-- ipv4 row -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-fingerprint"></i> IPv4</span>
+            <span class="info-value" id="ipv4Display">
+                <span class="loading"><span class="spinner"></span> scanning...</span>
+            </span>
+        </div>
 
-  <div class="members" id="members">loading… ⚡</div>
+        <!-- city -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-city"></i> city</span>
+            <span class="info-value" id="cityDisplay">—</span>
+        </div>
 
-  <a class="join" href="https://discord.gg/mynWqaNUSg" target="_blank">join server 🎵</a>
+        <!-- region -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-map-pin"></i> region</span>
+            <span class="info-value" id="regionDisplay">—</span>
+        </div>
 
-  <div class="section-title">about us 🌸</div>
-  <div class="card">We’re a calm, friendly space for hangouts, conversations, and comfort. Emo aesthetic, vaporwave vibes, cozy community. 🌙💖</div>
+        <!-- country -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-flag"></i> country</span>
+            <span class="info-value" id="countryDisplay">—</span>
+        </div>
 
-  <div class="section-title">rules ⚠️</div>
-  <div class="card" id="rules-card">
-    1. Be respectful and kind.<br>2. No harassment or hate speech.<br>3. Respect boundaries.<br>4. No spamming or scams.<br>5. Follow Discord TOS.<br>6. Keep channels organized.<br>7. Appropriate usernames & avatars.<br>8. No NSFW unless designated.<br>9. Report issues respectfully.<br>10. Protect the chill vibe.<br>11. Hangout and socialize.<br>12. Stay active but don’t pressure others.<br>13. Be inclusive.<br>14. No drama.<br>15. Keep memes tasteful.<br>16. Voice channels: push-to-talk.<br>17. Avoid unnecessary pings.<br>18. Respect mod decisions.<br>19. Help newcomers.<br>20. Enjoy yourself! 🌸
-  </div>
-</div>
+        <!-- postal code -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-mail-bulk"></i> postal</span>
+            <span class="info-value" id="postalDisplay">—</span>
+        </div>
 
-<footer>envy — all copyrights reserved</footer>
+        <!-- coordinates -->
+        <div class="info-row">
+            <span class="info-label"><i class="fas fa-map-marked-alt"></i> coordinates</span>
+            <span class="info-value" id="coordDisplay">—</span>
+        </div>
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2023/03/23/audio_d66ea4c4f2.mp3?filename=lofi-emo-chill-11505.mp3" type="audio/mpeg">
-</audio>
+        <!-- extra etc block: timezone, isp, asn -->
+        <div class="extra-row" id="extraContainer">
+            <div class="extra-item" id="timezoneItem">
+                <i class="fas fa-clock"></i>
+                <span id="timezoneDisplay">⏳ acquiring...</span>
+            </div>
+            <div class="extra-item" id="ispItem">
+                <i class="fas fa-building"></i>
+                <span id="ispDisplay">—</span>
+            </div>
+            <div class="extra-item" id="asnItem">
+                <i class="fas fa-diagram-project"></i>
+                <span id="asnDisplay">—</span>
+            </div>
+        </div>
 
-<button class="toggle-btn" id="toggle">🌙</button>
+        <!-- refresh button (doesn't affect sound) -->
+        <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> refresh data</button>
+    </div>
 
-<script>
-/* Member count */
-fetch("https://discord.com/api/v9/invites/mynWqaNUSg?with_counts=true")
-.then(r=>r.json())
-.then(d=>{
-  document.getElementById("members").textContent = `${d.approximate_presence_count} online • ${d.approximate_member_count} members ⚡`;
-})
-.catch(()=>{document.getElementById("members").textContent="join us on discord ⚡";});
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-/* MELTED TOGGLE */
-const bgDark=document.getElementById("bg-dark");
-const bgBright=document.getElementById("bg-bright");
-const toggleBtn=document.getElementById("toggle");
+    <script>
+        (function() {
+            // DOM elements
+            const ipv4Span = document.getElementById('ipv4Display');
+            const citySpan = document.getElementById('cityDisplay');
+            const regionSpan = document.getElementById('regionDisplay');
+            const countrySpan = document.getElementById('countryDisplay');
+            const postalSpan = document.getElementById('postalDisplay');
+            const coordSpan = document.getElementById('coordDisplay');
+            const timezoneSpan = document.getElementById('timezoneDisplay');
+            const ispSpan = document.getElementById('ispDisplay');
+            const asnSpan = document.getElementById('asnDisplay');
+            const refreshBtn = document.getElementById('refreshBtn');
+            
+            // Optional: control audio volume
+            const audio = document.getElementById('laughSound');
+            if (audio) {
+                audio.volume = 0.3; // set comfortable volume
+                // In case autoplay is blocked, we try to play on any user interaction later? 
+                // But per request, it should start automatically. We'll still attempt to play after load.
+                // However, browsers may block it. We'll add a small workaround: on body click, enable.
+                // But that would require a click, which we want to avoid. We'll rely on autoplay.
+                // Some browsers allow autoplay if the user has interacted with the site before.
+                // We'll also try to play programmatically after load.
+                window.addEventListener('load', function() {
+                    audio.play().catch(e => {
+                        console.log('Autoplay blocked – browser restrictions prevent automatic laugh. You may need to click the page once to enable sound.');
+                        // Show a subtle hint but don't force click.
+                    });
+                });
+            }
 
-toggleBtn.onclick=()=>{
-  if(document.body.classList.contains("dark")){
-    document.body.classList.remove("dark"); document.body.classList.add("bright");
-    toggleBtn.textContent="✨";
-    bgDark.style.opacity=0; bgBright.style.opacity=1;
-  }else{
-    document.body.classList.remove("bright"); document.body.classList.add("dark");
-    toggleBtn.textContent="🌙";
-    bgDark.style.opacity=1; bgBright.style.opacity=0;
-  }
-};
-</script>
+            function setLoading() {
+                ipv4Span.innerHTML = '<span class="loading"><span class="spinner"></span> scanning...</span>';
+                citySpan.textContent = '—';
+                regionSpan.textContent = '—';
+                countrySpan.textContent = '—';
+                postalSpan.textContent = '—';
+                coordSpan.textContent = '—';
+                timezoneSpan.textContent = '⏳ acquiring...';
+                ispSpan.textContent = '—';
+                asnSpan.textContent = '—';
+            }
 
+            function updateUI(data) {
+                const ip = data.ip || '—';
+                ipv4Span.innerHTML = `${ip} <small>IPv4</small>`;
+
+                citySpan.textContent = data.city || '—';
+                regionSpan.textContent = data.region || data.region_code || '—';
+                countrySpan.textContent = data.country_name || data.country || '—';
+                postalSpan.textContent = data.postal || data.postal_code || '—';
+
+                if (data.latitude && data.longitude) {
+                    coordSpan.textContent = `${data.latitude}, ${data.longitude}`;
+                } else if (data.lat && data.lon) {
+                    coordSpan.textContent = `${data.lat}, ${data.lon}`;
+                } else if (data.loc) {
+                    coordSpan.textContent = data.loc;
+                } else {
+                    coordSpan.textContent = '—';
+                }
+
+                timezoneSpan.textContent = data.timezone || data.tz || '—';
+                ispSpan.textContent = data.org || data.isp || data.organization || '—';
+                if (data.asn || data.as) {
+                    asnSpan.textContent = `AS${data.asn || data.as}`;
+                } else {
+                    asnSpan.textContent = '—';
+                }
+            }
+
+            function showError(msg) {
+                ipv4Span.innerHTML = `<span class="error">⚠️ failed</span>`;
+                citySpan.textContent = '—';
+                regionSpan.textContent = '—';
+                countrySpan.textContent = '—';
+                postalSpan.textContent = '—';
+                coordSpan.textContent = '—';
+                timezoneSpan.textContent = '—';
+                ispSpan.textContent = '—';
+                asnSpan.textContent = '—';
+            }
+
+            function fetchIPData() {
+                setLoading();
+
+                fetch('https://ipapi.co/json/')
+                    .then(response => {
+                        if (!response.ok) throw new Error('ipapi failed');
+                        return response.json();
+                    })
+                    .then(data => {
+                        updateUI(data);
+                    })
+                    .catch(err => {
+                        console.warn('ipapi.co failed, fallback to ipinfo.io', err);
+                        fetch('https://ipinfo.io/json?token=')
+                            .then(res => res.json())
+                            .then(ipinfo => {
+                                const adapted = {
+                                    ip: ipinfo.ip,
+                                    city: ipinfo.city,
+                                    region: ipinfo.region,
+                                    country_name: ipinfo.country,
+                                    postal: ipinfo.postal,
+                                    timezone: ipinfo.timezone,
+                                    org: ipinfo.org,
+                                };
+                                if (ipinfo.loc) {
+                                    const [lat, lon] = ipinfo.loc.split(',');
+                                    adapted.latitude = lat;
+                                    adapted.longitude = lon;
+                                }
+                                if (ipinfo.org) {
+                                    const match = ipinfo.org.match(/AS(\d+)/);
+                                    if (match) adapted.asn = match[1];
+                                }
+                                updateUI(adapted);
+                            })
+                            .catch(err2 => {
+                                console.error('both APIs failed', err2);
+                                showError('unavailable');
+                            });
+                    });
+            }
+
+            fetchIPData();
+            refreshBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                fetchIPData();
+            });
+        })();
+    </script>
 </body>
 </html>
